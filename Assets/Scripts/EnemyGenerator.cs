@@ -10,13 +10,21 @@ public class EnemyGenerator : MonoBehaviour
     private GameObject enemy;
     public bool isGenerate;
 
+    /// <summary>
+    /// “G‚Ì¶¬
+    /// </summary>
     void GenerateEnemy()
     {
-        float random_x = Random.Range(-3.0f, 3.0f);
-        float random_z = Random.Range(0, 3.0f);
-        Instantiate(enemy, new Vector3(random_x, transform.position.y, random_z), Quaternion.Euler(0, -90.0f, 0));
+        float random_x = Random.Range(-5.0f, 5.0f);
+        float random_z = Random.Range(0, 5.0f);
+        Debug.Log("“G¶¬");
+        Instantiate(enemy, new Vector3(random_x, transform.position.y, random_z), Quaternion.Euler(0, -180, 0));
     }
 
+    /// <summary>
+    /// “G‚Ì¶¬€”õŠJn
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator PrepareteGenerateEnemy()
     {
         int timer = 0;
