@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class BuildingsGenerator : MonoBehaviour
 {
+    [SerializeField]
+    private BuildingsController buildings;
 
     /// <summary>
     /// Œš•¨‚Ì¶¬
     /// </summary>
-    public IEnumerator Generate(BuildingsController buildings)
+    public BuildingsController GenerateBuildings()
     {
-        Instantiate(buildings, transform.position, Quaternion.identity);
-        Debug.Log("¶¬");
-        yield return null;
+        buildings = Instantiate(buildings, transform.position, Quaternion.identity);
+        Debug.Log("Œš•¨‚Ì¶¬");
+        return buildings;
     }
 }
