@@ -1761,9 +1761,10 @@ GameObject:
   - component: {fileID: 8282633362989430031}
   - component: {fileID: 8282633362982160078}
   - component: {fileID: 2672893436256605271}
+  - component: {fileID: 1102321014790905737}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1797,7 +1798,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 5398759fb2be3aa4a851227eb9599690, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1838,6 +1839,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  enemyHP: 0
+  maxEnemyHP: 2
+--- !u!65 &1102321014790905737
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282633362982160079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8282633362982160081
 GameObject:
   m_ObjectHideFlags: 0

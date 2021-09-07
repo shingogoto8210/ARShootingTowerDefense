@@ -8,16 +8,28 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private GameObject target;
     private NavMeshAgent agent;
-    // Start is called before the first frame update
+    public int enemyHP;
+    [SerializeField]
+    private int maxEnemyHP;
+
     void Start()
     {
+        enemyHP = maxEnemyHP;
         target = GameObject.Find("DefenseBase");
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        agent.destination = target.transform.position;
+            agent.destination = target.transform.position;   
+    }
+
+    public void AttackEnemy()
+    {
+        enemyHP = Mathf.Clamp(enemyHP--, 0, maxEnemyHP);
+        if(enemyHP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

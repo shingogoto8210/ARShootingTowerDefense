@@ -15,9 +15,7 @@ public class ShotBullet : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Rigidbody rbBullet = bullet.GetComponent<Rigidbody>();
-            Debug.Log("‰Á‘¬");
             rbBullet.AddForce(transform.forward * shotPower);
-            Debug.Log(rbBullet.velocity);
             Destroy(bullet, 5.0f);
         }
     }

@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
         //TODO GameStartの文字表示→消える
         //Enemy
         currentTime = limitTime;
-        Debug.Log("敵の生成準備開始");
         StartCoroutine(enemy.PrepareteGenerateEnemy());
     }
 
@@ -39,7 +38,6 @@ public class GameManager : MonoBehaviour
             {
                 currentTime = 0;
                 Debug.Log("Game Over");
-                Debug.Log("敵の生成終了");
                 enemy.isGenerate = false;
             }
         }

@@ -12,7 +12,6 @@ public class BuildingsController : MonoBehaviour
     public void MoveBuildings()
     {
         this.transform.DOMoveY(0.0f, 1.5f);
-        Debug.Log("建物がフィールド上に移動");
     }
 
 }
