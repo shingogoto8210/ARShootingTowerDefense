@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,8 +42,10 @@ public class GameManager : MonoBehaviour
             if(currentTime <= 0)
             {
                 currentTime = 0;
-                Debug.Log("Game Over");
+                Debug.Log("Clear");
                 enemy.isGenerate = false;
+                SceneManager.LoadScene("Clear");
+
             }
         }
     }

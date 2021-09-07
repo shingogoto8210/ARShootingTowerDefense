@@ -25,7 +25,10 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-            agent.destination = target.transform.position;   
+        if (agent != null)
+        { 
+            agent.destination = target.transform.position;
+        }
     }
 
     public void AttackEnemy()
