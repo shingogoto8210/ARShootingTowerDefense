@@ -1841,6 +1841,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemyHP: 0
   maxEnemyHP: 2
+  point: 100
 --- !u!65 &1102321014790905737
 BoxCollider:
   m_ObjectHideFlags: 0

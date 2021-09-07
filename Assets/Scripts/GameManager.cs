@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     private EnemyGenerator enemy;
     [SerializeField, Header("§ŒÀŽžŠÔ")]
     private int limitTime;
-    [SerializeField,Header("Žc‚èŽžŠÔ")]
-    private int currentTime;
+    [Header("Žc‚èŽžŠÔ")]
+    public int currentTime;
     private float timer;
+    [SerializeField]
+    private UIManager uiManager;
 
     void Start()
     {
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
         //TODO GameStart‚Ì•¶Žš•\Ž¦¨Á‚¦‚é
         //Enemy
         currentTime = limitTime;
+        uiManager.UpdateDisplayTimer();
         StartCoroutine(enemy.PrepareteGenerateEnemy());
     }
 
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
         if(timer > 1)
         {
             currentTime--;
+            uiManager.UpdateDisplayTimer();
             timer = 0;
             if(currentTime <= 0)
             {

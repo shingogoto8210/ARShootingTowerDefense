@@ -11,12 +11,16 @@ public class EnemyController : MonoBehaviour
     public int enemyHP;
     [SerializeField]
     private int maxEnemyHP;
+    [SerializeField]
+    private int point;
+    private UIManager uiManager;
 
     void Start()
     {
         enemyHP = maxEnemyHP;
         target = GameObject.Find("DefenseBase");
         agent = GetComponent<NavMeshAgent>();
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     void Update()
@@ -26,10 +30,12 @@ public class EnemyController : MonoBehaviour
 
     public void AttackEnemy()
     {
-        enemyHP = Mathf.Clamp(enemyHP--, 0, maxEnemyHP);
+        enemyHP--;
         if(enemyHP <= 0)
         {
             Destroy(gameObject);
+            ScoreManager.instance.score += point;
+            uiManager.UpdateDisplayScore();
         }
     }
 }
