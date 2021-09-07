@@ -225,6 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 506076626}
+  - component: {fileID: 506076627}
   m_Layer: 0
   m_Name: ShotBullet
   m_TagString: Untagged
@@ -246,6 +247,21 @@ Transform:
   m_Father: {fileID: 1942432907236904839}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &506076627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506076625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5b110d743b7404893a900bd3a5cddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7597555837322493788, guid: 2eb735ee46d267f4a823fa9d481c65ab,
+    type: 3}
+  shotPower: 1000
 --- !u!1 &656880745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,7 +1161,7 @@ GameObject:
   - component: {fileID: 1914837193549786775}
   - component: {fileID: 1924656732404614825}
   m_Layer: 0
-  m_Name: Makarov Silenced
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
