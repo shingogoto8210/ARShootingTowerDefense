@@ -23,7 +23,7 @@ public class DefenseBase : MonoBehaviour
             {
                 Destroy(gameObject);
                 Debug.Log("Game Over");
-                SceneManager.LoadScene("Game Over");
+                SceneManager.LoadScene("GameOver");
             }
         }
     }
