@@ -8,10 +8,12 @@ public class ShotBullet : MonoBehaviour
     private GameObject bulletPrefab;
     [SerializeField]
     private int shotPower;
+    //[SerializeField]
+    //private ARManager arManager;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)/* && arManager.currentARState == ARState.Play*/)
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Rigidbody rbBullet = bullet.GetComponent<Rigidbody>();

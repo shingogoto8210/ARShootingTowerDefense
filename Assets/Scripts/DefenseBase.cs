@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class DefenseBase : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class DefenseBase : MonoBehaviour
         {
             dbHP--;
             Destroy(enemy.gameObject);
+            enemy.tween.Kill();
             if(dbHP <= 0)
             {
                 Destroy(gameObject);

@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private BuildingsGenerator buildingsGenerator;
-    [SerializeField]
-    private EnemyGenerator enemy;
+    //[SerializeField]
+    //private BuildingsGenerator buildingsGenerator;
+    //[SerializeField]
+    //private EnemyGenerator enemy;
     [SerializeField, Header("制限時間")]
     private int limitTime;
     [Header("残り時間")]
@@ -16,23 +16,23 @@ public class GameManager : MonoBehaviour
     private float timer;
     [SerializeField]
     private UIManager uiManager;
+    [SerializeField]
+    private ARManager arManager;
 
     void Start()
     {
         //建物生成→フィールド上に移動
-        BuildingsController buildings = buildingsGenerator.GenerateBuildings();
-        buildings.MoveBuildings();
-        //TODO GameStartの文字表示→消える
-        //Enemy
+        //BuildingsController buildings = buildingsGenerator.GenerateBuildings();
+        //buildings.MoveBuildings();
         currentTime = limitTime;
         uiManager.UpdateDisplayTimer();
-        StartCoroutine(enemy.PrepareteGenerateEnemy());
+        //StartCoroutine(enemy.PrepareteGenerateEnemy());
     }
 
 
     void Update()
     {
-        
+        if(arManager.currentARState == ARState.Play)
         timer += Time.deltaTime;
         if(timer > 1)
         {
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
             {
                 currentTime = 0;
                 Debug.Log("Clear");
-                enemy.isGenerate = false;
+                //enemy.isGenerate = false;
                 SceneManager.LoadScene("Clear");
 
             }

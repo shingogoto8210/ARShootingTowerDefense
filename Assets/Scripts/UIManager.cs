@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     private Text txtScore;
     [SerializeField]
     private GameManager gameManager;
+    [SerializeField]
+    private Text txtDebugMessage;
 
     public void UpdateDisplayTimer()
     {
@@ -21,4 +23,11 @@ public class UIManager : MonoBehaviour
     {
         txtScore.text = ScoreManager.instance.score.ToString();
     }
+
+    public void DisplayDebug(string message)
+    {
+        txtDebugMessage.text = message;
+    }
+
+
 }

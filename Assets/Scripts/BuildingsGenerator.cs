@@ -8,12 +8,11 @@ public class BuildingsGenerator : MonoBehaviour
     private BuildingsController buildings;
 
     /// <summary>
-    /// Œš•¨‚Ì¶¬
+    /// Œš•¨‚Ì¶¬‚ÆˆÚ“®
     /// </summary>
-    public BuildingsController GenerateBuildings()
+    public void Start()
     {
         buildings = Instantiate(buildings, transform.position, Quaternion.identity);
-        Debug.Log("Œš•¨‚Ì¶¬");
-        return buildings;
+        buildings.MoveBuildings();
     }
 }

@@ -9,15 +9,21 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField]
     private EnemyController enemyController;
     public bool isGenerate;
+    [SerializeField]
+
+    void Start()
+    {
+        StartCoroutine(PrepareteGenerateEnemy());
+    }
 
     /// <summary>
     /// ìGÇÃê∂ê¨
     /// </summary>
     void GenerateEnemy()
     {
-        float random_x = Random.Range(-5.0f, 5.0f);
-        float random_z = Random.Range(0, 5.0f);
-        EnemyController enemy = Instantiate(enemyController, new Vector3(random_x, transform.position.y, random_z), Quaternion.Euler(0, -180, 0));
+        float random_x = Random.Range(-1.0f,1.0f);
+        float random_z = Random.Range(0, 1.0f);
+        Instantiate(enemyController, new Vector3(transform.root.position.x + random_x, transform.root.position.y, transform.root.position.z + random_z), Quaternion.Euler(0, -180, 0));
     }
 
     /// <summary>
@@ -28,7 +34,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         int timer = 0;
         isGenerate = true;
-        while (isGenerate)
+        while (isGenerate )
         {
             timer++;
             if (timer > intervalGenerateTime)
