@@ -9,6 +9,10 @@ public class DefenseBase : MonoBehaviour
     public int dbHP;
     [SerializeField]
     private int maxdbHP;
+    [SerializeField]
+    private GameObject effectPrefab;
+    private GameObject effect;
+
     void Start()
     {
         dbHP = maxdbHP;
@@ -19,8 +23,9 @@ public class DefenseBase : MonoBehaviour
         if(other.gameObject.TryGetComponent(out EnemyController enemy))
         {
             dbHP--;
-            Destroy(enemy.gameObject);
-            enemy.tween.Kill();
+            effect = Instantiate(effectPrefab, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+            Destroy(effect, 1.0f);
+            enemy.DestoryEnemy();
             if(dbHP <= 0)
             {
                 Destroy(gameObject);

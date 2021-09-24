@@ -1759,7 +1759,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8282633362982460143}
   - component: {fileID: 8282633362989430031}
-  - component: {fileID: 8282633362982160078}
   - component: {fileID: 2672893436256605271}
   - component: {fileID: 1102321014790905737}
   m_Layer: 0
@@ -1804,28 +1803,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!195 &8282633362982160078
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8282633362982160079}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 0.25
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 100
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &2672893436256605271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,8 +1817,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   enemyHP: 0
-  maxEnemyHP: 2
+  maxEnemyHP: 3
   point: 100
+  effectPrefab: {fileID: 100000, guid: 4cbb34f609dafad4586aaa018b8c2ba0, type: 3}
 --- !u!65 &1102321014790905737
 BoxCollider:
   m_ObjectHideFlags: 0

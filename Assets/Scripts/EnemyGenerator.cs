@@ -9,10 +9,12 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField]
     private EnemyController enemyController;
     public bool isGenerate;
-    [SerializeField]
+    private int generateCount;
+    private GameManager gameManager;
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         StartCoroutine(PrepareteGenerateEnemy());
     }
 
@@ -24,6 +26,7 @@ public class EnemyGenerator : MonoBehaviour
         float random_x = Random.Range(-1.0f,1.0f);
         float random_z = Random.Range(0, 1.0f);
         Instantiate(enemyController, new Vector3(transform.root.position.x + random_x, transform.root.position.y, transform.root.position.z + random_z), Quaternion.Euler(0, -180, 0));
+        generateCount++;
     }
 
     /// <summary>
@@ -39,8 +42,15 @@ public class EnemyGenerator : MonoBehaviour
             timer++;
             if (timer > intervalGenerateTime)
             {
-                GenerateEnemy();
                 timer = 0;
+                if(gameManager.currentGameState == ARState.Play)
+                {
+                    GenerateEnemy();
+                }
+                if (generateCount == gameManager.maxEnemyCount)
+                {
+                    isGenerate = false;
+                }
             }
             yield return null;
         }

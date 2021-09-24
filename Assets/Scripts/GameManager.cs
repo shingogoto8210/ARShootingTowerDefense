@@ -5,48 +5,58 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //[SerializeField]
-    //private BuildingsGenerator buildingsGenerator;
-    //[SerializeField]
-    //private EnemyGenerator enemy;
-    [SerializeField, Header("制限時間")]
-    private int limitTime;
-    [Header("残り時間")]
-    public int currentTime;
-    private float timer;
-    [SerializeField]
-    private UIManager uiManager;
     [SerializeField]
     private ARManager arManager;
+    [SerializeField]
+    private SpawnField spawnField;
+    public int enemyCount;
+    public int maxEnemyCount;
+    [SerializeField]
+    private Logo logo;
+    public ARState currentGameState;
+    public int nextStageNo;
+    private StageData nextStageData;
+    [SerializeField]
+    private ChangeOpeningLogo changeOpeningLogo;
 
-    void Start()
+    IEnumerator Start()
     {
-        //建物生成→フィールド上に移動
-        //BuildingsController buildings = buildingsGenerator.GenerateBuildings();
-        //buildings.MoveBuildings();
-        currentTime = limitTime;
-        uiManager.UpdateDisplayTimer();
-        //StartCoroutine(enemy.PrepareteGenerateEnemy());
+        enemyCount = maxEnemyCount;
+        if (currentGameState == ARState.Debug)
+        {
+            currentGameState = ARState.Ready;
+            yield return StartCoroutine(logo.PlayOpening());
+            currentGameState = ARState.Play;
+        }
     }
 
 
     void Update()
     {
-        if(arManager.currentARState == ARState.Play)
-        timer += Time.deltaTime;
-        if(timer > 1)
+        if (enemyCount <= 0 && currentGameState == ARState.Play)
         {
-            currentTime--;
-            uiManager.UpdateDisplayTimer();
-            timer = 0;
-            if(currentTime <= 0)
-            {
-                currentTime = 0;
-                Debug.Log("Clear");
-                //enemy.isGenerate = false;
-                SceneManager.LoadScene("Clear");
+            enemyCount = 0;
+            Destroy(spawnField.fieldObj);
+            //StartCoroutine(logo.PlayClear());
+            currentGameState = ARState.Ready;
+            nextStageNo++;
+            changeOpeningLogo.ChangeLogo();
+            StartCoroutine(SetUpNextStage());
+        }
+    }
 
-            }
+    public IEnumerator SetUpNextStage()
+    {
+        nextStageData = DataBaseManager.instance.stageDataSO.stageDatasList[nextStageNo];
+        maxEnemyCount = nextStageData.enemyCount;
+        enemyCount = maxEnemyCount;
+        Instantiate(nextStageData.stagePrefab,spawnField.fieldPos,Quaternion.identity);
+        yield return StartCoroutine(logo.PlayClear());
+        currentGameState = ARState.Play;
+        if(nextStageNo == DataBaseManager.instance.stageDataSO.stageDatasList.Count)
+        {
+            currentGameState = ARState.GameUp;
+            SceneManager.LoadScene("Clear");
         }
     }
 }

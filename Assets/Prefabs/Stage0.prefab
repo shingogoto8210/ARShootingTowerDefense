@@ -453,7 +453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dbHP: 0
-  maxdbHP: 20
+  maxdbHP: 5
+  effectPrefab: {fileID: 100000, guid: 158e34f943d2d564ca6ddfab52fe1525, type: 3}
 --- !u!65 &4129265734002339528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -717,7 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4129265734702714531}
   m_Layer: 0
-  m_Name: Field
+  m_Name: Stage0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

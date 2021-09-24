@@ -6,25 +6,24 @@ using UnityEngine.XR.ARSubsystems;
 public class SpawnField : MonoBehaviour
 {
     [SerializeField]
-    private GameObject fieldObj;
+    private GameObject fieldPrefab;
     private ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
     private bool isSpawnField;
+    public GameObject fieldObj;
+    [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
+    private Logo openingLogo;
+    public Vector3 fieldPos;
 
-    // Start is called before the first frame update
     void Start()
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
         isSpawnField = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        SpawnFieldObj();
-    }
-
-    void SpawnFieldObj()
+    public void SpawnFieldObj()
     {
         if (Input.touchCount > 0)
         {
@@ -34,7 +33,10 @@ public class SpawnField : MonoBehaviour
                 if (arRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon) && isSpawnField == false)
                 {
                     Pose hitPose = hits[0].pose;
-                    Instantiate(fieldObj, hitPose.position, hitPose.rotation);
+                    fieldPos = new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f);
+                    fieldObj = Instantiate(fieldPrefab, fieldPos, hitPose.rotation);
+                    gameManager.currentGameState = ARState.Ready;
+                    openingLogo.PlayOpening();
                     isSpawnField = true;
                 }
             }

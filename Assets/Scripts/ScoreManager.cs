@@ -19,9 +19,4 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Update()
-    {
-        
-    }
 }
