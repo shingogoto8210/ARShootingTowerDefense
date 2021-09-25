@@ -32,12 +32,12 @@ public class Logo : MonoBehaviour
         sequence.Append(imgStart.DOFade(0.0f, 0.1f));
         sequence.Append(canvasGroup.DOFade(1.0f, 0.5f));
         sequence.Append(imgClear.DOFade(1.0f, 0.5f));
-        sequence.AppendInterval(3.0f);
+        sequence.AppendInterval(2.0f);
         sequence.Append(imgClear.DOFade(0.0f, 0.5f));
         sequence.Append(imgStart.DOFade(1.0f, 0.5f));
-        sequence.AppendInterval(3.0f);
+        sequence.AppendInterval(2.0f);
         sequence.Append(canvasGroup.DOFade(0.0f, 0.5f));
-        yield return new WaitForSeconds(9.0f);
+        yield return new WaitForSeconds(8.0f);
     }
 
 

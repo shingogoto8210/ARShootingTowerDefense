@@ -36,7 +36,7 @@ public class SpawnField : MonoBehaviour
                     fieldPos = new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f);
                     fieldObj = Instantiate(fieldPrefab, fieldPos, hitPose.rotation);
                     gameManager.currentGameState = ARState.Ready;
-                    openingLogo.PlayOpening();
+                    StartCoroutine(openingLogo.PlayOpening());
                     isSpawnField = true;
                 }
             }

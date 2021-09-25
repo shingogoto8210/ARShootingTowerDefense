@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 109845337}
   - component: {fileID: 109845336}
   m_Layer: 0
-  m_Name: OpeningEffect
+  m_Name: LogoEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,7 +360,7 @@ MonoBehaviour:
     type: 3}
   fieldObj: {fileID: 0}
   gameManager: {fileID: 534334595}
-  openingLogo: {fileID: 0}
+  openingLogo: {fileID: 109845336}
   fieldPos: {x: 0, y: 0, z: 0}
 --- !u!114 &386857796
 MonoBehaviour:
@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 576076660}
   - component: {fileID: 576076659}
   m_Layer: 0
-  m_Name: bgOpening
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,7 +592,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -7.3217, y: -11.2808}
-  m_SizeDelta: {x: 1759.7571, y: 996.9329}
+  m_SizeDelta: {x: 4000, y: 3000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &576076659
 MonoBehaviour:

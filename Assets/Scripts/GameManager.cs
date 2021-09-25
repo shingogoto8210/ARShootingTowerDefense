@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         {
             enemyCount = 0;
             Destroy(spawnField.fieldObj);
-            //StartCoroutine(logo.PlayClear());
             currentGameState = ARState.Ready;
             nextStageNo++;
             changeOpeningLogo.ChangeLogo();
@@ -50,8 +49,8 @@ public class GameManager : MonoBehaviour
         nextStageData = DataBaseManager.instance.stageDataSO.stageDatasList[nextStageNo];
         maxEnemyCount = nextStageData.enemyCount;
         enemyCount = maxEnemyCount;
-        Instantiate(nextStageData.stagePrefab,spawnField.fieldPos,Quaternion.identity);
         yield return StartCoroutine(logo.PlayClear());
+        Instantiate(nextStageData.stagePrefab, spawnField.fieldPos, Quaternion.identity);
         currentGameState = ARState.Play;
         if(nextStageNo == DataBaseManager.instance.stageDataSO.stageDatasList.Count)
         {
