@@ -12,10 +12,12 @@ public class DefenseBase : MonoBehaviour
     [SerializeField]
     private GameObject effectPrefab;
     private GameObject effect;
+    private GameManager gameManager;
 
     void Start()
     {
         dbHP = maxdbHP;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +31,7 @@ public class DefenseBase : MonoBehaviour
             if(dbHP <= 0)
             {
                 Destroy(gameObject);
+                gameManager.currentGameState = ARState.GameUp;
                 Debug.Log("Game Over");
             }
         }

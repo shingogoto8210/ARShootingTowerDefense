@@ -24,7 +24,10 @@ public class EnemyController : MonoBehaviour
         enemyHP = maxEnemyHP;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         target = GameObject.Find("DefenseBase");
-        tween = this.transform.DOMove(target.transform.position, 4.0f).SetEase(Ease.Linear);
+        if (target != null)
+        {
+            tween = this.transform.DOMove(target.transform.position, 4.0f).SetEase(Ease.Linear);
+        }
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
@@ -36,9 +39,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //“G‚ÌHP‚ðŒ¸‚ç‚·
     public void AttackEnemy()
     {
         enemyHP--;
+        ScoreManager.instance.comboCount++;
         if(enemyHP <= 0)
         {
             effect = Instantiate(effectPrefab, new Vector3(transform.position.x,transform.position.y + 0.25f, transform.position.z), Quaternion.identity);

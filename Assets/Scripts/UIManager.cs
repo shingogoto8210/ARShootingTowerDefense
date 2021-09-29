@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     public Logo openingLogo;
     public Logo clearLogo;
     public Logo gameoverLogo;
+    [SerializeField]
+    private Text txtCombo;
 
     public void UpdateDisplayScore()
     {
@@ -50,5 +52,10 @@ public class UIManager : MonoBehaviour
         gameoverLogo = Instantiate(gameoverLogoPrefab, canvasTran, false);
         yield return null;
     }
+
+    public void UpdateDisplayCombo()
+    {
+        txtCombo.text = ScoreManager.instance.comboCount.ToString();
+    } 
 
 }

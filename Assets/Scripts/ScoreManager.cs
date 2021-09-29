@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
     public int score;
+    public int comboCount;
 
     void Start()
     {
