@@ -47,7 +47,7 @@ public class EnemyGenerator : MonoBehaviour
                 {
                     GenerateEnemy();
                 }
-                if (generateCount == gameManager.maxEnemyCount)
+                if (generateCount >= gameManager.maxEnemyCount)
                 {
                     isGenerate = false;
                 }

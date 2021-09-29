@@ -11,6 +11,17 @@ public class UIManager : MonoBehaviour
     private GameManager gameManager;
     [SerializeField]
     private Text txtDebugMessage;
+    [SerializeField]
+    private Logo openingLogoPrefab;
+    [SerializeField]
+    private Logo clearLogoPrefab;
+    [SerializeField]
+    private Logo gameoverLogoPrefab;
+    [SerializeField]
+    private Transform canvasTran;
+    public Logo openingLogo;
+    public Logo clearLogo;
+    public Logo gameoverLogo;
 
     public void UpdateDisplayScore()
     {
@@ -22,5 +33,22 @@ public class UIManager : MonoBehaviour
         txtDebugMessage.text = message;
     }
 
+    public IEnumerator CreateOpeningLogo()
+    {
+        openingLogo = Instantiate(openingLogoPrefab, canvasTran, false);
+        yield return null;
+    }
+
+    public IEnumerator CreateClearLogo()
+    {
+        clearLogo = Instantiate(clearLogoPrefab, canvasTran, false);
+        yield return null;
+    }
+
+    public IEnumerator CreateGameOverLogo()
+    {
+        gameoverLogo = Instantiate(gameoverLogoPrefab, canvasTran, false);
+        yield return null;
+    }
 
 }

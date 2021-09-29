@@ -5,27 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private ARManager arManager;
-    [SerializeField]
-    private SpawnField spawnField;
     public int enemyCount;
     public int maxEnemyCount;
-    [SerializeField]
-    private Logo logo;
     public ARState currentGameState;
-    public int nextStageNo;
-    private StageData nextStageData;
     [SerializeField]
-    private ChangeOpeningLogo changeOpeningLogo;
+    private UIManager uiManager;
+    [SerializeField]
+    private GameObject fieldPrefab;
+    [SerializeField]
+    private Transform fieldTran;
 
     IEnumerator Start()
     {
         enemyCount = maxEnemyCount;
         if (currentGameState == ARState.Debug)
         {
+            Instantiate(fieldPrefab, fieldTran.position, Quaternion.identity);
             currentGameState = ARState.Ready;
-            yield return StartCoroutine(logo.PlayOpening());
+            yield return StartCoroutine(uiManager.CreateOpeningLogo());
+            yield return StartCoroutine(uiManager.openingLogo.LogoEffect());
             currentGameState = ARState.Play;
         }
     }
@@ -36,26 +34,10 @@ public class GameManager : MonoBehaviour
         if (enemyCount <= 0 && currentGameState == ARState.Play)
         {
             enemyCount = 0;
-            Destroy(spawnField.fieldObj);
-            currentGameState = ARState.Ready;
-            nextStageNo++;
-            changeOpeningLogo.ChangeLogo();
-            StartCoroutine(SetUpNextStage());
-        }
-    }
-
-    public IEnumerator SetUpNextStage()
-    {
-        nextStageData = DataBaseManager.instance.stageDataSO.stageDatasList[nextStageNo];
-        maxEnemyCount = nextStageData.enemyCount;
-        enemyCount = maxEnemyCount;
-        yield return StartCoroutine(logo.PlayClear());
-        Instantiate(nextStageData.stagePrefab, spawnField.fieldPos, Quaternion.identity);
-        currentGameState = ARState.Play;
-        if(nextStageNo == DataBaseManager.instance.stageDataSO.stageDatasList.Count)
-        {
+            StartCoroutine(uiManager.CreateClearLogo());
+            StartCoroutine(uiManager.clearLogo.LogoEffect());
             currentGameState = ARState.GameUp;
-            SceneManager.LoadScene("Clear");
         }
     }
 }
+

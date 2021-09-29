@@ -9,7 +9,7 @@ public class SpawnField : MonoBehaviour
     private GameObject fieldPrefab;
     private ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
-    private bool isSpawnField;
+    public bool isSpawnField;
     public GameObject fieldObj;
     [SerializeField]
     private GameManager gameManager;
@@ -36,7 +36,7 @@ public class SpawnField : MonoBehaviour
                     fieldPos = new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f);
                     fieldObj = Instantiate(fieldPrefab, fieldPos, hitPose.rotation);
                     gameManager.currentGameState = ARState.Ready;
-                    StartCoroutine(openingLogo.PlayOpening());
+                    StartCoroutine(openingLogo.LogoEffect());
                     isSpawnField = true;
                 }
             }

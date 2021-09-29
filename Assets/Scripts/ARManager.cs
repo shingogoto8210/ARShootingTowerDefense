@@ -13,19 +13,22 @@ public class ARManager : MonoBehaviour
     [SerializeField]
     private GameManager gameManager;
     private SpawnField spawnField;
+    [SerializeField]
+    private GameObject mainCamera;
 
     void Start()
     {
         spawnField = GetComponent<SpawnField>();
         arWeaponObj.SetActive(false);
-        //if(currentARState == ARState.Debug)
-        //{
-        //ARをOFFにしてカメラとフィールドをオンにする
-        //}
-        //else
-        //{
-        //currentARState = ARState.Tracking;
-        //}
+        if(gameManager.currentGameState == ARState.Debug)
+        {
+            this.gameObject.SetActive(false);
+            mainCamera.gameObject.SetActive(true);
+        }
+        else
+        {
+        gameManager.currentGameState = ARState.Tracking;
+        }
 }
 
     void Update()
