@@ -1761,6 +1761,7 @@ GameObject:
   - component: {fileID: 8282633362989430031}
   - component: {fileID: 2672893436256605271}
   - component: {fileID: 1102321014790905737}
+  - component: {fileID: 2608477786432543014}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1817,9 +1818,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   enemyHP: 0
-  maxEnemyHP: 3
+  maxEnemyHP: 1
   point: 100
   effectPrefab: {fileID: 100000, guid: 4cbb34f609dafad4586aaa018b8c2ba0, type: 3}
+  itemsList:
+  - {fileID: 999606610344084410, guid: 16166eb3f9f264240996fdbfcf6f2260, type: 3}
 --- !u!65 &1102321014790905737
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1833,6 +1836,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &2608477786432543014
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282633362982160079}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &8282633362982160081
 GameObject:
   m_ObjectHideFlags: 0

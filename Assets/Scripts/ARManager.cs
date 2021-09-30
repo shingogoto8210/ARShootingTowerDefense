@@ -60,7 +60,7 @@ public class ARManager : MonoBehaviour
 
     private IEnumerator PreparateGameReady()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(6.0f);
         gameManager.currentGameState = ARState.Play;
     }
 }

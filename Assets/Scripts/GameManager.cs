@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     //private GameObject fieldPrefab;
     //[SerializeField]
     //private Transform fieldTran;
+    public List<EnemyController> enemiesList = new List<EnemyController>();
 
     IEnumerator Start()
     {

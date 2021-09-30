@@ -10,12 +10,10 @@ public class SpawnField : MonoBehaviour
     private ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
     public bool isSpawnField;
-    public GameObject fieldObj;
     [SerializeField]
     private GameManager gameManager;
     [SerializeField]
-    private Logo openingLogo;
-    public Vector3 fieldPos;
+    private UIManager uiManager;
 
     void Start()
     {
@@ -33,10 +31,10 @@ public class SpawnField : MonoBehaviour
                 if (arRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon) && isSpawnField == false)
                 {
                     Pose hitPose = hits[0].pose;
-                    fieldPos = new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f);
-                    fieldObj = Instantiate(fieldPrefab, fieldPos, hitPose.rotation);
+                    Instantiate(fieldPrefab, new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f), hitPose.rotation);
                     gameManager.currentGameState = ARState.Ready;
-                    StartCoroutine(openingLogo.LogoEffect());
+                    StartCoroutine(uiManager.CreateOpeningLogo());
+                    StartCoroutine(uiManager.openingLogo.LogoEffect());
                     isSpawnField = true;
                 }
             }
