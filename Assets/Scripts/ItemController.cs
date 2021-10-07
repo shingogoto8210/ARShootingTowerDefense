@@ -17,34 +17,38 @@ public class ItemController : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Bullet") && itemNo == 0)
         {
             Destroy(other.gameObject);
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+            yield return StartCoroutine(StopItem());
+            Debug.Log("Destroy");
             Destroy(gameObject);
-            StopItem();
+            
         }
-
-        //else if (other.gameObject.CompareTag("Bullet") && itemNo == 1)
-        //{
-          //  Destroy(other.gameObject);
-          //  BarrierItem();
-          //  Destroy(gameObject);
-        //}
     }
 
-    private void StopItem()
+    private IEnumerator StopItem()
     {
         for (int i = 0; i < gameManager.enemiesList.Count; i++)
         {
             gameManager.enemiesList[i].StopEnemy();
         }
+        Debug.Log("stop");
+        yield return new WaitForSeconds(3.0f);
+        for (int i = 0; i < gameManager.enemiesList.Count; i++)
+        {
+            gameManager.enemiesList[i].ResumeEnemy();
+        }
+        Debug.Log("start");
     }
 
     //private void BarrierItem()
     //{
-      //  defenseBaseTran = GameObject.Find("DefenseBase").transform;
-      //  Instantiate(barrier, defenseBaseTran.position, Quaternion.identity);
+    //  defenseBaseTran = GameObject.Find("DefenseBase").transform;
+    //  Instantiate(barrier, defenseBaseTran.position, Quaternion.identity);
     //}
 }

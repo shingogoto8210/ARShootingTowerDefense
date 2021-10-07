@@ -14,10 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageDatasList:
   - stageNo: 0
-    enemyCount: 10
-    stagePrefab: {fileID: 4129265734702714528, guid: c94600182226a0144bc47e46c6229203,
-      type: 3}
-  - stageNo: 1
-    enemyCount: 20
-    stagePrefab: {fileID: 9144973055302605911, guid: d1d7bc197c146554dada785c7667fa3a,
+    enemyCount: 3
+    stagePrefab: {fileID: 7637698374606918195, guid: 9faaf3a6a44587849ac1e3ae28c5c87e,
       type: 3}

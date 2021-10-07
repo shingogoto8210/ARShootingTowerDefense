@@ -7,5 +7,5 @@ public class StageData
 {
     public int stageNo;
     public int enemyCount;
-    public GameObject stagePrefab;
+    public StageManager stagePrefab;
 }

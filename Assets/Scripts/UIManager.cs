@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     public Logo gameoverLogo;
     [SerializeField]
     private Text txtCombo;
+    [SerializeField]
+    private Text txtTimer;
 
     public void UpdateDisplayScore()
     {
@@ -57,5 +59,10 @@ public class UIManager : MonoBehaviour
     {
         txtCombo.text = ScoreManager.instance.comboCount.ToString();
     } 
+
+    public void UpdateDisplayTimer()
+    {
+        txtTimer.text = gameManager.limitTime.ToString();
+    }
 
 }

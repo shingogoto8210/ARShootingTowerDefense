@@ -9,13 +9,19 @@ C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker2
+AssetImportWorker11
 -projectPath
 C:/Users/Owner/ARShootingTowerDefense
 -logFile
-Logs/AssetImportWorker2.log
+Logs/AssetImportWorker11.log
 -srvPort
 65137
 Successfully changed project path to: C:/Users/Owner/ARShootingTowerDefense
 C:/Users/Owner/ARShootingTowerDefense
 Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 20216.08 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 33.31 ms.
+Initialize engine version: 2020.3.12f1 (b3b2c6512326)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Owner/ARShootingTowerDefense/Assets
+GfxDevice: creating device client; threaded=0

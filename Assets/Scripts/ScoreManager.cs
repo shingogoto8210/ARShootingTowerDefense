@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
     public int score;
     public int comboCount;
+    public float comboTimer;
 
     void Start()
     {
@@ -18,6 +19,15 @@ public class ScoreManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        comboTimer += Time.deltaTime;
+        if(comboTimer >= 3.0f)
+        {
+            comboCount = 0;
         }
     }
 }

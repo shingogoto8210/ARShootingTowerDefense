@@ -1816,13 +1816,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9d92345a0a7bf469d9365e85e75198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   enemyHP: 0
   maxEnemyHP: 1
   point: 100
   effectPrefab: {fileID: 100000, guid: 4cbb34f609dafad4586aaa018b8c2ba0, type: 3}
   itemsList:
   - {fileID: 999606610344084410, guid: 16166eb3f9f264240996fdbfcf6f2260, type: 3}
+  dropRate: 40
 --- !u!65 &1102321014790905737
 BoxCollider:
   m_ObjectHideFlags: 0

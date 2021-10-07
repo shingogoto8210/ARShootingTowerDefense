@@ -5,8 +5,8 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 public class SpawnField : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject fieldPrefab;
+    //[SerializeField]
+    //private StageManager fieldPrefab;
     private ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
     public bool isSpawnField;
@@ -31,8 +31,13 @@ public class SpawnField : MonoBehaviour
                 if (arRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon) && isSpawnField == false)
                 {
                     Pose hitPose = hits[0].pose;
-                    Instantiate(fieldPrefab, new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f), hitPose.rotation);
+                    StageManager stage = Instantiate(DataBaseManager.instance.stageDataSO.stageDatasList[gameManager.stageNo].stagePrefab, new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f), hitPose.rotation);
                     gameManager.currentGameState = ARState.Ready;
+                    gameManager.defenseBase = stage.defenseBase;
+                    for(int i = 0;i < stage.enemyGenerators.Length; i++)
+                    {
+                        stage.enemyGenerators[i].SetUpGenerator(gameManager);
+                    }
                     StartCoroutine(uiManager.CreateOpeningLogo());
                     StartCoroutine(uiManager.openingLogo.LogoEffect());
                     isSpawnField = true;

@@ -35,5 +35,11 @@ public class DefenseBase : MonoBehaviour
                 Debug.Log("Game Over");
             }
         }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            dbHP--;
+            effect = Instantiate(effectPrefab, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+            Destroy(effect, 1.0f);
+        }
     }
 }
