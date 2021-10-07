@@ -10,8 +10,8 @@ public class EnemyGeneratorBase : MonoBehaviour
 
     protected void GenerateEnemy()
     {
-        float random_x = Random.Range(-1.5f, 1.5f);
-        float random_z = Random.Range(0, 1.5f);
+        float random_x = Random.Range(-2.0f, 2.0f);
+        float random_z = Random.Range(0, 2.0f);
         EnemyControllerBase enemy = Instantiate(enemyController, new Vector3(transform.root.position.x + random_x, transform.root.position.y, transform.root.position.z + random_z), Quaternion.Euler(0, -180, 0));
         gameManager.generateCount++;
         enemy.SetUpEnemy(gameManager);

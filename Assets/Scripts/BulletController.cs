@@ -27,18 +27,5 @@ public class BulletController : MonoBehaviour
             Destroy(effect, 1.0f);
             Destroy(gameObject);
         }
-
-
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("StageArea"))
-        {
-            Destroy(gameObject);
-            ScoreManager.instance.comboCount = 0;
-        }
-    }
-
-
 }

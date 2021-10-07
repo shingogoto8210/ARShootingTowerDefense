@@ -1817,7 +1817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 0
-  maxEnemyHP: 1
+  maxEnemyHP: 3
   point: 100
   effectPrefab: {fileID: 100000, guid: 4cbb34f609dafad4586aaa018b8c2ba0, type: 3}
   itemsList:

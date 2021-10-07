@@ -20,5 +20,6 @@ public class Logo : MonoBehaviour
         sequence.AppendInterval(3.0f);
         sequence.Append(canvasGroup.DOFade(0.0f, 0.5f));
         yield return new WaitForSeconds(5.0f);
+        Destroy(gameObject);
     }
 }

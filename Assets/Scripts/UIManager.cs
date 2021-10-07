@@ -26,6 +26,14 @@ public class UIManager : MonoBehaviour
     private Text txtCombo;
     [SerializeField]
     private Text txtTimer;
+    [SerializeField]
+    private Text txtComboBonus;
+    [SerializeField]
+    private Text txtTimeBonus;
+    [SerializeField]
+    private Text txtClearPoint;
+
+
 
     public void UpdateDisplayScore()
     {
@@ -65,4 +73,11 @@ public class UIManager : MonoBehaviour
         txtTimer.text = gameManager.limitTime.ToString();
     }
 
+    public void UpdateDisplayResult()
+    {
+        txtScore.text = ScoreManager.instance.score.ToString();
+        txtComboBonus.text = ScoreManager.instance.comboBonas.ToString();
+        txtTimeBonus.text = ScoreManager.instance.timeBonas.ToString();
+        txtClearPoint.text = ScoreManager.instance.clearPoint.ToString();
+    }
 }

@@ -18,10 +18,7 @@ public class GameManager : MonoBehaviour
     public int stageNo;
     public int limitTime = 60;
     private float timer;
-    [SerializeField]
-    private int clearPoint;
-    private int timeBonas;
-    private int comboBonas;
+    
 
     IEnumerator Start()
     {
@@ -54,6 +51,7 @@ public class GameManager : MonoBehaviour
             if(limitTime <= 0)
             {
                 limitTime = 0;
+                SceneStateManager.instance.PreparateLoadSceneState(SceneState.Title,1.0f);
             }
         }
 
@@ -64,9 +62,8 @@ public class GameManager : MonoBehaviour
             StartCoroutine(uiManager.CreateClearLogo());
             StartCoroutine(uiManager.clearLogo.LogoEffect());
             currentGameState = ARState.GameUp;
-            timeBonas = limitTime * 10;
-            comboBonas = ScoreManager.instance.comboCount * 100;
-            clearPoint = timeBonas + comboBonas + ScoreManager.instance.score;
+            ScoreManager.instance.CulculateScore();
+            SceneStateManager.instance.PreparateLoadSceneState(SceneState.Result,6.0f);
         }
         if(stage.defenseBase == null)
         {
@@ -74,6 +71,7 @@ public class GameManager : MonoBehaviour
             {
                 enemiesList[i].tween.Kill();
             }
+            SceneStateManager.instance.PreparateLoadSceneState(SceneState.Title,6.0f);
         }
         
     }

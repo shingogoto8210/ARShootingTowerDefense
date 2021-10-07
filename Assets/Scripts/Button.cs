@@ -5,14 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
-
-    public void ToMain()
+    public void OnClick()
     {
-        SceneManager.LoadScene("Main");
-    }
-
-    public void ToTitle()
-    {
-        SceneManager.LoadScene("Title");
+        SceneStateManager.instance.PreparateLoadSceneState(SceneState.Main,0.1f);
     }
 }

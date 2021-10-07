@@ -30,6 +30,7 @@ public class DefenseBase : MonoBehaviour
             enemy.DestoryEnemy();
             if(dbHP <= 0)
             {
+                dbHP = 0;
                 Destroy(gameObject);
                 gameManager.currentGameState = ARState.GameUp;
                 Debug.Log("Game Over");
@@ -40,6 +41,13 @@ public class DefenseBase : MonoBehaviour
             dbHP--;
             effect = Instantiate(effectPrefab, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             Destroy(effect, 1.0f);
+            if (dbHP <= 0)
+            {
+                dbHP = 0;
+                Destroy(gameObject);
+                gameManager.currentGameState = ARState.GameUp;
+                Debug.Log("Game Over");
+            }
         }
     }
 }
