@@ -8,13 +8,12 @@ public class ScoreManager : MonoBehaviour
     public int score;
     public int comboCount;
     public float comboTimer;
-    [SerializeField]
-    private GameManager gameManager;
     public int clearPoint;
     public int timeBonas;
     public int comboBonas;
+    public int totalClearPoint;
 
-    void Start()
+    void Awake()
     {
         if(instance == null)
         {
@@ -27,23 +26,19 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void CountCombo()
     {
-        if(gameManager.currentGameState == ARState.Play)
-        {
-            comboTimer += Time.deltaTime;
-            if (comboTimer >= 5.0f)
-            {
-                comboTimer = 0;
-                comboCount = 0;
-            }
-        }
+        comboCount++;
+        comboTimer = 0;
     }
 
-    public void CulculateScore()
+    public void ResetComboTimer()
     {
-        timeBonas = gameManager.limitTime * 10;
-        comboBonas = ScoreManager.instance.comboCount * 100;
-        clearPoint = timeBonas + comboBonas + ScoreManager.instance.score;
+        comboTimer += Time.deltaTime;
+        if (comboTimer >= 5.0f)
+        {
+            comboTimer = 0;
+            comboCount = 0;
+        }
     }
 }

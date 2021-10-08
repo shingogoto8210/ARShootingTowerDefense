@@ -30,8 +30,7 @@ public class EnemyControllerBase : MonoBehaviour
     public virtual void AttackEnemy()
     {
         enemyHP--;
-        ScoreManager.instance.comboCount++;
-        ScoreManager.instance.comboTimer = 0;
+        ScoreManager.instance.CountCombo();
         if (enemyHP <= 0)
         {
             effect = Instantiate(effectPrefab, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
@@ -51,6 +50,7 @@ public class EnemyControllerBase : MonoBehaviour
             this.tween.Kill();
         }
         gameManager.enemyCount--;
+        gameManager.CheckClear();
     }
 
     protected virtual void JudgeDropItem()

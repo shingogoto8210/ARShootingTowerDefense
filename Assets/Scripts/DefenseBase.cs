@@ -32,6 +32,7 @@ public class DefenseBase : MonoBehaviour
             {
                 dbHP = 0;
                 Destroy(gameObject);
+                gameManager.CheckGameOver();
                 gameManager.currentGameState = ARState.GameUp;
                 Debug.Log("Game Over");
             }
@@ -45,6 +46,7 @@ public class DefenseBase : MonoBehaviour
             {
                 dbHP = 0;
                 Destroy(gameObject);
+                gameManager.CheckGameOver();
                 gameManager.currentGameState = ARState.GameUp;
                 Debug.Log("Game Over");
             }

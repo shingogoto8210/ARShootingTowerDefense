@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
-    public void OnClick()
+    [SerializeField]
+    private int stageNo;
+    public void OnClickLoadToMain()
     {
         SceneStateManager.instance.PreparateLoadSceneState(SceneState.Main,0.1f);
+        GameData.instance.stageNo = stageNo;
+    }
+    
+    public void OnClickLoadToStageSelect()
+    {
+        SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 0.1f);
+
     }
 }

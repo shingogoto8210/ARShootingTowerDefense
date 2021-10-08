@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour
     private Text txtTimeBonus;
     [SerializeField]
     private Text txtClearPoint;
+    [SerializeField]
+    private Text txtTotalClearPoint;
 
 
 
@@ -80,4 +82,10 @@ public class UIManager : MonoBehaviour
         txtTimeBonus.text = ScoreManager.instance.timeBonas.ToString();
         txtClearPoint.text = ScoreManager.instance.clearPoint.ToString();
     }
+
+    public void UpdateDisplayTotalClearPoint()
+    {
+        txtTotalClearPoint.text = ScoreManager.instance.totalClearPoint.ToString();
+    }
+
 }

@@ -31,7 +31,7 @@ public class SpawnField : MonoBehaviour
                 if (arRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon) && isSpawnField == false)
                 {
                     Pose hitPose = hits[0].pose;
-                    StageManager stage = Instantiate(DataBaseManager.instance.stageDataSO.stageDatasList[gameManager.stageNo].stagePrefab, new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f), hitPose.rotation);
+                    StageManager stage = Instantiate(DataBaseManager.instance.stageDataSO.stageDatasList[GameData.instance.stageNo].stagePrefab, new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f), hitPose.rotation);
                     gameManager.currentGameState = ARState.Ready;
                     gameManager.defenseBase = stage.defenseBase;
                     for(int i = 0;i < stage.enemyGenerators.Length; i++)
