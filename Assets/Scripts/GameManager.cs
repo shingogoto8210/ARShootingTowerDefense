@@ -11,15 +11,18 @@ public class GameManager : MonoBehaviour
     public bool isGenerate;
     public ARState currentGameState;
     public UIManager uiManager;
-    public List<EnemyController> enemiesList = new List<EnemyController>();
+    public List<EnemyControllerBase> enemiesList = new List<EnemyControllerBase>();
     public DefenseBase defenseBase;
-    private StageManager stage;
+    public StageManager stage;
     public int limitTime = 60;
     private float timer;
+    public bool isStop;
     
 
     IEnumerator Start()
     {
+        ScoreManager.instance.score = 0;
+        ScoreManager.instance.comboCount = 0;
         uiManager.UpdateDisplayTimer();
         enemyCount = DataBaseManager.instance.stageDataSO.stageDatasList[GameData.instance.stageNo].enemyCount;
         if (currentGameState == ARState.Debug)
@@ -32,7 +35,6 @@ public class GameManager : MonoBehaviour
             }
             defenseBase = stage.defenseBase;
             yield return StartCoroutine(uiManager.CreateOpeningLogo());
-            yield return StartCoroutine(uiManager.openingLogo.LogoEffect());
             currentGameState = ARState.Play;
         }
     }
@@ -51,7 +53,9 @@ public class GameManager : MonoBehaviour
                 if (limitTime <= 0)
                 {
                     limitTime = 0;
-                    SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 1.0f);
+                    GameUpToCommon();
+                    StartCoroutine(uiManager.CreateGameOverLogo());
+                    SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 6.0f);
                 }
             }
             ScoreManager.instance.ResetComboTimer();
@@ -64,10 +68,9 @@ public class GameManager : MonoBehaviour
         if (enemyCount <= 0 && currentGameState == ARState.Play)
         {
             enemyCount = 0;
-            StartCoroutine(uiManager.CreateClearLogo());
-            StartCoroutine(uiManager.clearLogo.LogoEffect());
-            currentGameState = ARState.GameUp;
+            GameUpToCommon();
             CulculateScore();
+            StartCoroutine(uiManager.CreateClearLogo());
             SceneStateManager.instance.PreparateLoadSceneState(SceneState.Result, 6.0f);
         }
     }
@@ -82,15 +85,18 @@ public class GameManager : MonoBehaviour
 
     public void CheckGameOver()
     {
-        if (stage.defenseBase == null)
+        GameUpToCommon();
+        for (int i = 0; i < enemiesList.Count; i++)
         {
-            for (int i = 0; i < enemiesList.Count; i++)
-            {
-                enemiesList[i].tween.Kill();
-            }
-            currentGameState = ARState.GameUp;
-            SceneStateManager.instance.PreparateLoadSceneState(SceneState.Title, 6.0f);
+            enemiesList[i].tween.Kill();
         }
+        StartCoroutine(uiManager.CreateGameOverLogo());
+        SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 6.0f);
+    }
+
+    public void GameUpToCommon()
+    {
+        currentGameState = ARState.GameUp;
     }
 
 }

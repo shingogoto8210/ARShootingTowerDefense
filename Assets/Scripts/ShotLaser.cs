@@ -10,14 +10,13 @@ public class ShotLaser : MonoBehaviour
     private GameObject laserPrefab;
     private GameObject laser;
     private Tween tween;
-    private GameObject target;
+    private DefenseBase target;
     [SerializeField]
     public int shotTimer;
     [SerializeField]
     private int shotInterval;
     private float timer = 0;
     private GameManager gameManager;
-    private UIManager uiManager;
     [SerializeField]
     private Text txtShotLaserCount;
 
@@ -25,13 +24,11 @@ public class ShotLaser : MonoBehaviour
     {
         shotTimer = shotInterval;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        target = GameObject.Find("DefenseBase");
-        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     void Update()
     {
-        if(gameManager.currentGameState == ARState.Play)
+        if(gameManager.currentGameState == ARState.Play && gameManager.isStop == false)
         {
             timer += Time.deltaTime;
             if(timer > 1)
@@ -50,6 +47,7 @@ public class ShotLaser : MonoBehaviour
 
     private void Shot()
     {
+        target = gameManager.stage.defenseBase;
         //laser = Instantiate(laserPrefab, transform.position,Quaternion.identity);
         laser = Instantiate(laserPrefab, gameObject.transform);
         laser.transform.parent = gameObject.transform;

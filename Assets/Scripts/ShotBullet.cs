@@ -9,8 +9,6 @@ public class ShotBullet : MonoBehaviour
     [SerializeField]
     private int shotPower;
     [SerializeField]
-    private GameObject effectPrefab;
-    [SerializeField]
     private GameManager gameManager;
     private bool isShot;
     private int shotInterval;
@@ -28,7 +26,7 @@ public class ShotBullet : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Rigidbody rbBullet = bullet.GetComponent<Rigidbody>();
             rbBullet.AddForce(transform.forward * shotPower);
-            Instantiate(effectPrefab, transform.position, Quaternion.identity);
+            Instantiate(EffectDataBase.instance.shotBulletEffect, transform.position, Quaternion.identity);
             Destroy(bullet, 5.0f);
             isShot = false;
         }

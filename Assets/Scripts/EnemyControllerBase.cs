@@ -13,9 +13,6 @@ public class EnemyControllerBase : MonoBehaviour
     protected int point;
     protected UIManager uiManager;
     protected GameManager gameManager;
-    [SerializeField]
-    protected GameObject effectPrefab;
-    protected GameObject effect;
     public List<ItemController> itemsList = new List<ItemController>();
     [SerializeField]
     protected int dropRate;
@@ -25,6 +22,7 @@ public class EnemyControllerBase : MonoBehaviour
     protected virtual void Start()
     {
         enemyHP = maxEnemyHP;
+        gameManager.enemiesList.Add(this);
     }
 
     public virtual void AttackEnemy()
@@ -33,7 +31,7 @@ public class EnemyControllerBase : MonoBehaviour
         ScoreManager.instance.CountCombo();
         if (enemyHP <= 0)
         {
-            effect = Instantiate(effectPrefab, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+            GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             Destroy(effect, 1.0f);
             ScoreManager.instance.score += point;
             uiManager.UpdateDisplayScore();

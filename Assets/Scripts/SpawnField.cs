@@ -5,8 +5,6 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 public class SpawnField : MonoBehaviour
 {
-    //[SerializeField]
-    //private StageManager fieldPrefab;
     private ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
     public bool isSpawnField;
@@ -39,7 +37,6 @@ public class SpawnField : MonoBehaviour
                         stage.enemyGenerators[i].SetUpGenerator(gameManager);
                     }
                     StartCoroutine(uiManager.CreateOpeningLogo());
-                    StartCoroutine(uiManager.openingLogo.LogoEffect());
                     isSpawnField = true;
                 }
             }

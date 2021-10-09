@@ -1764,7 +1764,7 @@ GameObject:
   - component: {fileID: 2608477786432543014}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1822,7 +1822,7 @@ MonoBehaviour:
   effectPrefab: {fileID: 100000, guid: 4cbb34f609dafad4586aaa018b8c2ba0, type: 3}
   itemsList:
   - {fileID: 999606610344084410, guid: 16166eb3f9f264240996fdbfcf6f2260, type: 3}
-  dropRate: 40
+  dropRate: 30
 --- !u!65 &1102321014790905737
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1850,7 +1850,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &8282633362982160081
 GameObject:

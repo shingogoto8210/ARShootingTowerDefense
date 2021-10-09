@@ -13,6 +13,7 @@ public class EnemyGeneratorBase : MonoBehaviour
         float random_x = Random.Range(-2.0f, 2.0f);
         float random_z = Random.Range(0, 2.0f);
         EnemyControllerBase enemy = Instantiate(enemyController, new Vector3(transform.root.position.x + random_x, transform.root.position.y, transform.root.position.z + random_z), Quaternion.Euler(0, -180, 0));
+        Instantiate(EffectDataBase.instance.enemySummonEffect, enemy.transform.position, Quaternion.identity);
         gameManager.generateCount++;
         enemy.SetUpEnemy(gameManager);
     }

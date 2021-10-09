@@ -124,6 +124,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: c1b886843d2af434e80541a0adcf372d, type: 2}
+--- !u!1 &146420829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146420830}
+  m_Layer: 0
+  m_Name: Stage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &146420830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146420829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 859, y: 483, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1123373211}
+  - {fileID: 1022813186405550074}
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &278348894
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +431,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518729198
 GameObject:
@@ -522,7 +554,9 @@ MonoBehaviour:
   uiManager: {fileID: 1384681964}
   enemiesList: []
   defenseBase: {fileID: 0}
+  stage: {fileID: 0}
   limitTime: 60
+  isStop: 0
 --- !u!4 &534334596
 Transform:
   m_ObjectHideFlags: 0
@@ -1140,7 +1174,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5548660702064749497, guid: 2eb735ee46d267f4a823fa9d481c65ab,
     type: 3}
   shotPower: 1000
-  effectPrefab: {fileID: 100014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
   gameManager: {fileID: 534334595}
 --- !u!64 &1123373073
 MeshCollider:
@@ -1309,7 +1342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dbHP: 0
   maxdbHP: 10
-  effectPrefab: {fileID: 100000, guid: 158e34f943d2d564ca6ddfab52fe1525, type: 3}
+  gameManager: {fileID: 0}
 --- !u!4 &1123373200
 Transform:
   m_ObjectHideFlags: 0
@@ -1467,16 +1500,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123373323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -859, y: -483, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1123373215}
   - {fileID: 1123373203}
   - {fileID: 1123373206}
   - {fileID: 1123373204}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 146420830}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1123373212
 Transform:
@@ -2470,7 +2503,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1366726455
 GameObject:
@@ -2629,7 +2662,8 @@ MonoBehaviour:
     type: 3}
   clearLogoPrefab: {fileID: 4176728450072535033, guid: 7be8aa9734098ca47bb00ceeeac856eb,
     type: 3}
-  gameoverLogoPrefab: {fileID: 0}
+  gameoverLogoPrefab: {fileID: 5124783006594604671, guid: a898a9ae135bfbf44b00c8bf7a1d1c91,
+    type: 3}
   canvasTran: {fileID: 925221559}
   openingLogo: {fileID: 0}
   clearLogo: {fileID: 0}
@@ -2639,6 +2673,7 @@ MonoBehaviour:
   txtComboBonus: {fileID: 0}
   txtTimeBonus: {fileID: 0}
   txtClearPoint: {fileID: 0}
+  txtTotalClearPoint: {fileID: 0}
 --- !u!4 &1384681965
 Transform:
   m_ObjectHideFlags: 0
@@ -2652,6 +2687,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1509950439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509950441}
+  - component: {fileID: 1509950440}
+  m_Layer: 0
+  m_Name: EffectDataBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1509950440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509950439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8adddb723cc967c49a1b670dcbcd717f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAttackEffect: {fileID: 100000, guid: fabdd45f98921b547b28c84c0818d2a4, type: 3}
+  enemyDestroyEffect: {fileID: 100000, guid: 4cbb34f609dafad4586aaa018b8c2ba0, type: 3}
+  shotBulletEffect: {fileID: 100002, guid: 20b31fcfaed0cb842a56fbbe2419428f, type: 3}
+  defenseBaseAttackEffect: {fileID: 100000, guid: 158e34f943d2d564ca6ddfab52fe1525,
+    type: 3}
+  itemGetEffect: {fileID: 144420, guid: bd6e3e9b46bda134d90f86f3b35b0e89, type: 3}
+  enemyStopEffect: {fileID: 3664804675538912772, guid: 385a4a523211c9e40959f3a5c1e1ecfc,
+    type: 3}
+  enemySummonEffect: {fileID: 4223771387512918479, guid: 301cf6b8c27d18b4690d5b1e70aa47d7,
+    type: 3}
+--- !u!4 &1509950441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509950439}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -2.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1535784185
 GameObject:
@@ -2835,10 +2923,10 @@ MonoBehaviour:
   score: 0
   comboCount: 0
   comboTimer: 0
-  gameManager: {fileID: 534334595}
   clearPoint: 0
   timeBonas: 0
   comboBonas: 0
+  totalClearPoint: 0
 --- !u!4 &1619632755
 Transform:
   m_ObjectHideFlags: 0
@@ -3278,7 +3366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dbHP: 0
   maxdbHP: 10
-  effectPrefab: {fileID: 100000, guid: 158e34f943d2d564ca6ddfab52fe1525, type: 3}
+  gameManager: {fileID: 0}
 --- !u!1 &1022813186405549956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3535,16 +3623,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022813186405549961}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -859, y: -483, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1022813186405550065}
   - {fileID: 1022813186405550075}
   - {fileID: 1022813186405550071}
   - {fileID: 1022813186405550072}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 146420830}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1022813186405550075
 Transform:
@@ -3747,7 +3835,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5548660702064749497, guid: 2eb735ee46d267f4a823fa9d481c65ab,
     type: 3}
   shotPower: 1000
-  effectPrefab: {fileID: 100014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
   gameManager: {fileID: 534334595}
 --- !u!1 &4858864852503571242
 GameObject:

@@ -8,7 +8,6 @@ public class EnemyController : EnemyControllerBase
     protected override void Start()
     {
         base.Start();
-        gameManager.enemiesList.Add(this);
         if (target != null)
         {
             float random = Random.Range(10.0f, 20.0f);

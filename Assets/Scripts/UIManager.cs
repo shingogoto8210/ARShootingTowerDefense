@@ -50,19 +50,19 @@ public class UIManager : MonoBehaviour
     public IEnumerator CreateOpeningLogo()
     {
         openingLogo = Instantiate(openingLogoPrefab, canvasTran, false);
-        yield return null;
+        yield return StartCoroutine(openingLogo.LogoEffect());
     }
 
     public IEnumerator CreateClearLogo()
     {
         clearLogo = Instantiate(clearLogoPrefab, canvasTran, false);
-        yield return null;
+        yield return StartCoroutine(clearLogo.LogoEffect());
     }
 
     public IEnumerator CreateGameOverLogo()
     {
         gameoverLogo = Instantiate(gameoverLogoPrefab, canvasTran, false);
-        yield return null;
+        yield return StartCoroutine(gameoverLogo.LogoEffect());
     }
 
     public void UpdateDisplayCombo()

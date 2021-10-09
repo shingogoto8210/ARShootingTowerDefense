@@ -22,27 +22,32 @@ public class ItemController : MonoBehaviour
         if (other.gameObject.CompareTag("Bullet") && itemNo == 0)
         {
             Destroy(other.gameObject);
+            Instantiate(EffectDataBase.instance.itemGetEffect, transform.position, Quaternion.identity);
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<Collider>().enabled = false;
             yield return StartCoroutine(StopItem());
             Debug.Log("Destroy");
             Destroy(gameObject);
-            
         }
     }
 
     private IEnumerator StopItem()
     {
+        gameManager.isStop = true;
         for (int i = 0; i < gameManager.enemiesList.Count; i++)
         {
             gameManager.enemiesList[i].StopEnemy();
+            GameObject effect = Instantiate(EffectDataBase.instance.enemyStopEffect,gameManager.enemiesList[i].transform.position, Quaternion.identity);
+            Destroy(effect, 5.0f);
         }
         Debug.Log("stop");
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(5.0f);
         for (int i = 0; i < gameManager.enemiesList.Count; i++)
         {
             gameManager.enemiesList[i].ResumeEnemy();
+            
         }
+        gameManager.isStop = false;
         Debug.Log("start");
     }
 

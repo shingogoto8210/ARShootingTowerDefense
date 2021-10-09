@@ -10,8 +10,6 @@ public class DefenseBase : MonoBehaviour
     [SerializeField]
     private int maxdbHP;
     [SerializeField]
-    private GameObject effectPrefab;
-    private GameObject effect;
     private GameManager gameManager;
 
     void Start()
@@ -22,10 +20,10 @@ public class DefenseBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.TryGetComponent(out EnemyController enemy))
+        if(other.gameObject.TryGetComponent(out EnemyControllerBase enemy))
         {
             dbHP--;
-            effect = Instantiate(effectPrefab, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+            GameObject effect = Instantiate(EffectDataBase.instance.defenseBaseAttackEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             Destroy(effect, 1.0f);
             enemy.DestoryEnemy();
             if(dbHP <= 0)
@@ -33,22 +31,18 @@ public class DefenseBase : MonoBehaviour
                 dbHP = 0;
                 Destroy(gameObject);
                 gameManager.CheckGameOver();
-                gameManager.currentGameState = ARState.GameUp;
-                Debug.Log("Game Over");
             }
         }
-        else if (other.gameObject.CompareTag("Enemy"))
+        else if (other.gameObject.CompareTag("EnemyLaser"))
         {
             dbHP--;
-            effect = Instantiate(effectPrefab, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+            GameObject effect = Instantiate(EffectDataBase.instance.defenseBaseAttackEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             Destroy(effect, 1.0f);
             if (dbHP <= 0)
             {
                 dbHP = 0;
                 Destroy(gameObject);
                 gameManager.CheckGameOver();
-                gameManager.currentGameState = ARState.GameUp;
-                Debug.Log("Game Over");
             }
         }
     }
