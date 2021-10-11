@@ -34,7 +34,12 @@ public class UIManager : MonoBehaviour
     private Text txtClearPoint;
     [SerializeField]
     private Text txtTotalClearPoint;
-
+    [SerializeField]
+    private Image imgHPGage;
+    [SerializeField]
+    private Image imgSkillGage;
+    [SerializeField]
+    public GameObject btnSkill;
 
 
     public void UpdateDisplayScore()
@@ -68,7 +73,7 @@ public class UIManager : MonoBehaviour
     public void UpdateDisplayCombo()
     {
         txtCombo.text = ScoreManager.instance.comboCount.ToString();
-    } 
+    }
 
     public void UpdateDisplayTimer()
     {
@@ -88,4 +93,28 @@ public class UIManager : MonoBehaviour
         txtTotalClearPoint.text = ScoreManager.instance.totalClearPoint.ToString();
     }
 
+    public void UpdateDisplayHPGage()
+    {
+        imgHPGage.fillAmount = gameManager.defenseBase.dbHP / gameManager.defenseBase.maxdbHP;
+        if (imgHPGage.fillAmount <= 0)
+        {
+            imgHPGage.fillAmount = 0;
+        }
+    }
+
+    public void UpdateDisplaySkillGage()
+    {
+        imgSkillGage.fillAmount = gameManager.skillPoint / 10;
+        //if (imgSkillGage.fillAmount >= 10)
+        //{
+          //  imgSkillGage.fillAmount = 10;
+        //}
+    }
+
+    public void UpdateDisplaySkillButton(bool isbtn)
+    {
+        btnSkill.GetComponent<Button>().enabled = isbtn;
+    }
+
+    
 }

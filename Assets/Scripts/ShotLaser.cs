@@ -24,6 +24,7 @@ public class ShotLaser : MonoBehaviour
     {
         shotTimer = shotInterval;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        target = GameObject.Find("DefenseBase").GetComponent<DefenseBase>();
     }
 
     void Update()
@@ -47,7 +48,7 @@ public class ShotLaser : MonoBehaviour
 
     private void Shot()
     {
-        target = gameManager.stage.defenseBase;
+        //target = gameManager.stage.defenseBase;
         //laser = Instantiate(laserPrefab, transform.position,Quaternion.identity);
         laser = Instantiate(laserPrefab, gameObject.transform);
         laser.transform.parent = gameObject.transform;

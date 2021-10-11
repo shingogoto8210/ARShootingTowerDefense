@@ -13,7 +13,7 @@ public class EnemyControllerBase : MonoBehaviour
     protected int point;
     protected UIManager uiManager;
     protected GameManager gameManager;
-    public List<ItemController> itemsList = new List<ItemController>();
+    public List<ItemControllerBase> itemsList = new List<ItemControllerBase>();
     [SerializeField]
     protected int dropRate;
     public Tween tween;
@@ -29,12 +29,15 @@ public class EnemyControllerBase : MonoBehaviour
     {
         enemyHP--;
         ScoreManager.instance.CountCombo();
+        gameManager.skillPoint++;
+        //if(gameManager.skillPoint >= 10)
+        //{
+          //  gameManager.uiManager.UpdateDisplaySkillButton(true);
+        //}
+        uiManager.UpdateDisplaySkillGage();
+        gameManager.CheckSkill();
         if (enemyHP <= 0)
         {
-            GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
-            Destroy(effect, 1.0f);
-            ScoreManager.instance.score += point;
-            uiManager.UpdateDisplayScore();
             JudgeDropItem();
             DestoryEnemy();
         }
@@ -42,7 +45,12 @@ public class EnemyControllerBase : MonoBehaviour
 
     public virtual void DestoryEnemy()
     {
+        gameManager.enemiesList.Remove(this);
         Destroy(this.gameObject);
+        GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+        Destroy(effect, 1.0f);
+        ScoreManager.instance.score += point;
+        uiManager.UpdateDisplayScore();
         if (tween != null)
         {
             this.tween.Kill();
@@ -59,7 +67,7 @@ public class EnemyControllerBase : MonoBehaviour
         {
             int random = 0;
             random = Random.Range(0, itemsList.Count);
-            ItemController item = Instantiate(itemsList[random], new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+            ItemControllerBase item = Instantiate(itemsList[random], new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             item.itemNo = random;
             //Destroy(item.gameObject, 5.0f);
         }

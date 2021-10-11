@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ShotBullet : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class ShotBullet : MonoBehaviour
         {
             isShot = true;
             shotInterval = 0;
+        }
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
         }
         if (Input.GetMouseButtonDown(0) && gameManager.currentGameState == ARState.Play && isShot == true)
         {

@@ -6,9 +6,9 @@ using DG.Tweening;
 
 public class DefenseBase : MonoBehaviour
 {
-    public int dbHP;
+    public float dbHP;
     [SerializeField]
-    private int maxdbHP;
+    public float maxdbHP;
     [SerializeField]
     private GameManager gameManager;
 
@@ -23,6 +23,7 @@ public class DefenseBase : MonoBehaviour
         if(other.gameObject.TryGetComponent(out EnemyControllerBase enemy))
         {
             dbHP--;
+            gameManager.uiManager.UpdateDisplayHPGage();
             GameObject effect = Instantiate(EffectDataBase.instance.defenseBaseAttackEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             Destroy(effect, 1.0f);
             enemy.DestoryEnemy();
@@ -36,6 +37,7 @@ public class DefenseBase : MonoBehaviour
         else if (other.gameObject.CompareTag("EnemyLaser"))
         {
             dbHP--;
+            gameManager.uiManager.UpdateDisplayHPGage();
             GameObject effect = Instantiate(EffectDataBase.instance.defenseBaseAttackEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             Destroy(effect, 1.0f);
             if (dbHP <= 0)

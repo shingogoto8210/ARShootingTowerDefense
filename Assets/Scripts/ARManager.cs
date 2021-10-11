@@ -61,6 +61,8 @@ public class ARManager : MonoBehaviour
     private IEnumerator PreparateGameReady()
     {
         yield return new WaitForSeconds(6.0f);
+        uiManager.UpdateDisplayHPGage();
+        uiManager.UpdateDisplaySkillGage();
         gameManager.currentGameState = ARState.Play;
     }
 }

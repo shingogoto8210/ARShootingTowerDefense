@@ -101,9 +101,9 @@ MonoBehaviour:
   enemyHP: 0
   maxEnemyHP: 3
   point: 500
-  effectPrefab: {fileID: 100000, guid: 4cbb34f609dafad4586aaa018b8c2ba0, type: 3}
   itemsList:
-  - {fileID: 999606610344084410, guid: 16166eb3f9f264240996fdbfcf6f2260, type: 3}
+  - {fileID: 6059028710578789958, guid: 17cf4f83d21069642840cae18417de52, type: 3}
+  - {fileID: 8366439890525549831, guid: ce6d85072329b6442bbe2fe2cebef297, type: 3}
   dropRate: 20
 --- !u!135 &3474713701951099810
 SphereCollider:

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int limitTime = 60;
     private float timer;
     public bool isStop;
+    public float skillPoint;
     
 
     IEnumerator Start()
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
             }
             defenseBase = stage.defenseBase;
             yield return StartCoroutine(uiManager.CreateOpeningLogo());
+            uiManager.UpdateDisplayHPGage();
+            uiManager.UpdateDisplaySkillGage();
             currentGameState = ARState.Play;
         }
     }
@@ -97,6 +100,14 @@ public class GameManager : MonoBehaviour
     public void GameUpToCommon()
     {
         currentGameState = ARState.GameUp;
+    }
+
+    public void CheckSkill()
+    {
+        if (skillPoint >= 10)
+        {
+            //uiManager.UpdateDisplaySkillButton();
+        }
     }
 
 }
