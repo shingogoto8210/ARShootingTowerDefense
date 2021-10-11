@@ -10,7 +10,8 @@ public class EffectDataBase : MonoBehaviour
     public GameObject shotBulletEffect;
     public GameObject defenseBaseAttackEffect;
     public GameObject itemGetEffect;
-    public GameObject enemyStopEffect;
+    public GameObject iceEffect;
+    public GameObject lightningEffect;
     public GameObject enemySummonEffect;
 
     void Awake()

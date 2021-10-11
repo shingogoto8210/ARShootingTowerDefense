@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class GameManager : MonoBehaviour
     public StageManager stage;
     public int limitTime = 60;
     private float timer;
-    public bool isStop;
+    public bool isStop = false;
+    public bool isSkill = false;
     public float skillPoint;
     
 
@@ -102,13 +104,7 @@ public class GameManager : MonoBehaviour
         currentGameState = ARState.GameUp;
     }
 
-    public void CheckSkill()
-    {
-        if (skillPoint >= 10)
-        {
-            //uiManager.UpdateDisplaySkillButton();
-        }
-    }
+    
 
 }
 

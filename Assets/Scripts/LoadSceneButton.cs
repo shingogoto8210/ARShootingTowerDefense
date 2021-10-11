@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Button : MonoBehaviour
+public class LoadSceneButton : MonoBehaviour
 {
     [SerializeField]
     private int stageNo;

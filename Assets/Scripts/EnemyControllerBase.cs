@@ -30,12 +30,8 @@ public class EnemyControllerBase : MonoBehaviour
         enemyHP--;
         ScoreManager.instance.CountCombo();
         gameManager.skillPoint++;
-        //if(gameManager.skillPoint >= 10)
-        //{
-          //  gameManager.uiManager.UpdateDisplaySkillButton(true);
-        //}
         uiManager.UpdateDisplaySkillGage();
-        gameManager.CheckSkill();
+        //uiManager.UpdateDisplaySkillButton();
         if (enemyHP <= 0)
         {
             JudgeDropItem();

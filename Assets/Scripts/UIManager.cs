@@ -39,7 +39,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image imgSkillGage;
     [SerializeField]
-    public GameObject btnSkill;
+    public GameObject iceButton;
+    [SerializeField]
+    public GameObject meteorButton;
+    [SerializeField]
+    public GameObject lightningButton;
 
 
     public void UpdateDisplayScore()
@@ -105,15 +109,41 @@ public class UIManager : MonoBehaviour
     public void UpdateDisplaySkillGage()
     {
         imgSkillGage.fillAmount = gameManager.skillPoint / 10;
-        //if (imgSkillGage.fillAmount >= 10)
-        //{
-          //  imgSkillGage.fillAmount = 10;
-        //}
+        if (imgSkillGage.fillAmount >= 10)
+        {
+            imgSkillGage.fillAmount = 10;
+        }
+        UpdateDisplaySkillButton();
     }
 
-    public void UpdateDisplaySkillButton(bool isbtn)
+    public void UpdateDisplaySkillButton()
     {
-        btnSkill.GetComponent<Button>().enabled = isbtn;
+        if(gameManager.skillPoint >= 3)
+        {
+            lightningButton.GetComponent<Button>().interactable = true;
+            meteorButton.GetComponent<Button>().interactable = false;
+            iceButton.GetComponent<Button>().interactable = false;
+        }
+        if (gameManager.skillPoint >= 5)
+        {
+            lightningButton.GetComponent<Button>().interactable = true;
+            meteorButton.GetComponent<Button>().interactable = true;
+            iceButton.GetComponent<Button>().interactable = false;
+
+        }
+        if (gameManager.skillPoint >= 8)
+        {
+            lightningButton.GetComponent<Button>().interactable = true;
+            meteorButton.GetComponent<Button>().interactable = true;
+            iceButton.GetComponent<Button>().interactable = true;
+        }
+        if(gameManager.skillPoint < 3)
+        {
+            lightningButton.GetComponent<Button>().interactable = false;
+            meteorButton.GetComponent<Button>().interactable = false;
+            iceButton.GetComponent<Button>().interactable = false;
+        }
+        Debug.Log(gameManager.skillPoint);
     }
 
     
