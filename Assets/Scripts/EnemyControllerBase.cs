@@ -35,24 +35,29 @@ public class EnemyControllerBase : MonoBehaviour
         if (enemyHP <= 0)
         {
             JudgeDropItem();
-            DestoryEnemy();
+            DestroyEnemy();
         }
     }
 
-    public virtual void DestoryEnemy()
+    public virtual void DestroyEnemy()
     {
-        gameManager.enemiesList.Remove(this);
         Destroy(this.gameObject);
-        GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
-        Destroy(effect, 1.0f);
-        ScoreManager.instance.score += point;
-        uiManager.UpdateDisplayScore();
         if (tween != null)
         {
             this.tween.Kill();
         }
+        GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+        Destroy(effect, 1.0f);
+        gameManager.enemiesList.Remove(this);
+        ScoreManager.instance.score += point;
+        uiManager.UpdateDisplayScore();
         gameManager.enemyCount--;
         gameManager.CheckClear();
+    }
+
+    public void SwitchGameObject(bool isSwitch)
+    {
+        this.gameObject.SetActive(isSwitch);
     }
 
     protected virtual void JudgeDropItem()
@@ -71,12 +76,18 @@ public class EnemyControllerBase : MonoBehaviour
 
     public void StopEnemy()
     {
-        tween.Pause();
+        if(tween != null)
+        {
+            tween.Pause();
+        }
     }
 
     public void ResumeEnemy()
     {
-        tween.Play();
+        if(tween != null)
+        {
+            tween.Play();
+        }
     }
 
     public void SetUpEnemy(GameManager gameManager)

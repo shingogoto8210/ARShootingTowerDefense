@@ -34,86 +34,107 @@ public class SkillButton : MonoBehaviour
     {
         StartCoroutine(lightning());
     }
-
+    /// <summary>
+    /// “G‘S‘Ì‚Ì“®‚«‚ğ~‚ß‚é
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator Ice()
     {
-        if(gameManager.skillPoint >= 10 && gameManager.currentGameState == ARState.Play)
+        if(gameManager.skillPoint >= 3 && gameManager.currentGameState == ARState.Play)
         {
-            UseSkillPoint(10);
+            UseSkillPoint(3);
             gameManager.isStop = true;
-            gameManager.isSkill = true;
-            //gameManager.uiManager.UpdateDisplaySkillButton();
             for (int i = 0; i < gameManager.enemiesList.Count; i++)
             {
                 gameManager.enemiesList[i].StopEnemy();
                 GameObject effect = Instantiate(EffectDataBase.instance.iceEffect, gameManager.enemiesList[i].transform.position, Quaternion.identity);
                 Destroy(effect, 5.0f);
             }
-            gameManager.isSkill = false;
             yield return new WaitForSeconds(5.0f);
             for (int i = 0; i < gameManager.enemiesList.Count; i++)
             {
+                if (gameManager.enemiesList.Count == 0)
+                {
+                    break;
+                }
                 gameManager.enemiesList[i].ResumeEnemy();
             }
             gameManager.isStop = false;
-            int random = Random.Range(1, gameManager.enemiesList.Count);
-
-            for (int i = 0; i < random; i++)
-            {
-                gameManager.enemiesList[i].DestoryEnemy();
-                ScoreManager.instance.CountCombo();
-            }
         }
         
     }
-
+    /// <summary>
+    /// “G‚ğƒ‰ƒ“ƒ_ƒ€‚É”j‰ó‚·‚é
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator Meteor()
     {
-        if(gameManager.skillPoint >= 5 && gameManager.currentGameState == ARState.Play)
+        if (gameManager.skillPoint >= 5 && gameManager.currentGameState == ARState.Play)
         {
             UseSkillPoint(5);
-            gameManager.isSkill = true; ;
-            //gameManager.uiManager.UpdateDisplaySkillButton();
-            int random = Random.Range(1, gameManager.enemiesList.Count);
+            int random = Random.Range(0, gameManager.enemiesList.Count);
+            List<EnemyControllerBase> destroyEnemyList = new List<EnemyControllerBase>();
             for (int i = 0; i < random; i++)
             {
                 GameObject meteor = Instantiate(meteorPrefab, gameManager.enemiesList[i].transform.position, Quaternion.identity);
                 Destroy(meteor, 2.0f);
-            }
-            yield return new WaitForSeconds(0.5f);
-            for (int i = 0; i < random; i++)
-            {
-                gameManager.enemiesList[i].DestoryEnemy();
+                yield return new WaitForSeconds(0.5f);
+                //gameManager.enemiesList[i].DestroyEnemy();
+                destroyEnemyList.Add(gameManager.enemiesList[i]);
+                gameManager.enemiesList[i].SwitchGameObject(false);
                 ScoreManager.instance.CountCombo();
             }
-            gameManager.isSkill = false ;
+            for (int i = 0; i < destroyEnemyList.Count; i++)
+            {
+                destroyEnemyList[i].DestroyEnemy();
+            }
 
         }
     }
 
+    /// <summary>
+    /// “G‘S‘Ì‚ÉUŒ‚‚µ‚Ä“®‚«‚ğ~‚ß‚é
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator lightning()
     {
-        if (gameManager.skillPoint >= 3 && gameManager.currentGameState == ARState.Play)
+        if (gameManager.skillPoint >= 10 && gameManager.currentGameState == ARState.Play)
         {
-            UseSkillPoint(3);
-            gameManager.isSkill = true;
-            //gameManager.uiManager.UpdateDisplaySkillButton();
+            UseSkillPoint(10);
+            gameManager.isStop = true;
             GameObject lightning = Instantiate(lightningPrefab, gameManager.stage.transform.position, Quaternion.identity);
             Destroy(lightning, 2.0f);
-            yield return new WaitForSeconds(1.0f);
-            int random = Random.Range(1, gameManager.enemiesList.Count);
-            for (int i = 0; i < random; i++)
+            yield return new WaitForSeconds(0.5f);
+            for (int i = 0; i < gameManager.enemiesList.Count; i++)
             {
-                gameManager.enemiesList[i].StopEnemy();
-                GameObject lightningEffect = Instantiate(EffectDataBase.instance.lightningEffect, gameManager.enemiesList[i].transform.position, Quaternion.identity);
-                Destroy(lightningEffect, 5.0f);
+                if(gameManager.enemiesList[i] != null)
+                {
+                    gameManager.enemiesList[i].StopEnemy();
+                    GameObject lightningEffect = Instantiate(EffectDataBase.instance.lightningEffect, gameManager.enemiesList[i].transform.position, Quaternion.identity);
+                    Destroy(lightningEffect, 5.0f);
+                }
+                
             }
-            gameManager.isSkill = false;
             yield return new WaitForSeconds(5.0f);
-            for (int i = 0; i < random; i++)
+            if (gameManager.enemiesList != null)
             {
-                gameManager.enemiesList[i].ResumeEnemy();
+                List<EnemyControllerBase> enemies = new List<EnemyControllerBase>();
+                for(int i = 0; i < gameManager.enemiesList.Count; i++)
+                {
+                    enemies.Add(gameManager.enemiesList[i]);
+                }
+                Debug.Log(enemies.Count);
+
+                for(int i = 0; i < enemies.Count ; i++)
+                {
+                  
+                        enemies[i].AttackEnemy();
+                        enemies[i].ResumeEnemy();
+                        Debug.Log(i);
+                }
+                
             }
+            gameManager.isStop = false;
         }
     }
 

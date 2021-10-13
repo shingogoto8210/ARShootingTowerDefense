@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public int limitTime = 60;
     private float timer;
     public bool isStop = false;
-    public bool isSkill = false;
     public float skillPoint;
     
 

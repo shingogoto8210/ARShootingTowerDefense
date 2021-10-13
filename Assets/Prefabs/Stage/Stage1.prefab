@@ -485,8 +485,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dbHP: 0
-  maxdbHP: 5
-  effectPrefab: {fileID: 100000, guid: 158e34f943d2d564ca6ddfab52fe1525, type: 3}
+  maxdbHP: 100
+  gameManager: {fileID: 0}
 --- !u!65 &1022813187608789716
 BoxCollider:
   m_ObjectHideFlags: 0

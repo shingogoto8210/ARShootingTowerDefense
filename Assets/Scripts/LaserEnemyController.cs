@@ -8,6 +8,8 @@ public class LaserEnemyController : EnemyControllerBase
     {
         base.Start();
         this.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
+        GameObject effect = Instantiate(EffectDataBase.instance.enemySummonEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1.0f);
         this.gameObject.transform.LookAt(target.transform);
     }
 }

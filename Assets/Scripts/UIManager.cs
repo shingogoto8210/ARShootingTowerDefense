@@ -120,18 +120,18 @@ public class UIManager : MonoBehaviour
     {
         if(gameManager.skillPoint >= 3)
         {
-            lightningButton.GetComponent<Button>().interactable = true;
+            lightningButton.GetComponent<Button>().interactable = false;
             meteorButton.GetComponent<Button>().interactable = false;
-            iceButton.GetComponent<Button>().interactable = false;
+            iceButton.GetComponent<Button>().interactable = true;
         }
         if (gameManager.skillPoint >= 5)
         {
-            lightningButton.GetComponent<Button>().interactable = true;
+            lightningButton.GetComponent<Button>().interactable = false;
             meteorButton.GetComponent<Button>().interactable = true;
-            iceButton.GetComponent<Button>().interactable = false;
+            iceButton.GetComponent<Button>().interactable = true;
 
         }
-        if (gameManager.skillPoint >= 8)
+        if (gameManager.skillPoint >= 10)
         {
             lightningButton.GetComponent<Button>().interactable = true;
             meteorButton.GetComponent<Button>().interactable = true;
@@ -143,7 +143,6 @@ public class UIManager : MonoBehaviour
             meteorButton.GetComponent<Button>().interactable = false;
             iceButton.GetComponent<Button>().interactable = false;
         }
-        Debug.Log(gameManager.skillPoint);
     }
 
     

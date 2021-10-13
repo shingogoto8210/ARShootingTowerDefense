@@ -9,18 +9,18 @@ C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker6
+AssetImportWorker1
 -projectPath
 C:/Users/Owner/ARShootingTowerDefense
 -logFile
-Logs/AssetImportWorker6.log
+Logs/AssetImportWorker1.log
 -srvPort
-49766
+49857
 Successfully changed project path to: C:/Users/Owner/ARShootingTowerDefense
 C:/Users/Owner/ARShootingTowerDefense
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 1105.72 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 5.83 ms.
+Refreshing native plugins compatible for Editor in 6713.17 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 8.17 ms.
 Initialize engine version: 2020.3.12f1 (b3b2c6512326)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/Owner/ARShootingTowerDefense/Assets
@@ -31,11 +31,3 @@ Direct3D:
     Vendor:   
     VRAM:     2006 MB
     Driver:   27.20.100.8682
-Shader 'WFX/Transparent Specular': fallback shader 'Particles/Alpha Blended' not found
-Shader 'WFX/Transparent Diffuse': fallback shader 'Particles/Alpha Blended' not found
-Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56648
-Begin MonoManager ReloadAssembly

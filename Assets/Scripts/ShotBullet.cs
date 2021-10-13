@@ -26,7 +26,7 @@ public class ShotBullet : MonoBehaviour
         {
             return;
         }
-        if (Input.GetMouseButtonDown(0) && gameManager.currentGameState == ARState.Play && isShot == true && gameManager.isSkill == false)
+        if (Input.GetMouseButtonDown(0) && gameManager.currentGameState == ARState.Play && isShot == true )
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Rigidbody rbBullet = bullet.GetComponent<Rigidbody>();

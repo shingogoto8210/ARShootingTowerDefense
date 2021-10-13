@@ -26,7 +26,7 @@ public class DefenseBase : MonoBehaviour
             gameManager.uiManager.UpdateDisplayHPGage();
             GameObject effect = Instantiate(EffectDataBase.instance.defenseBaseAttackEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             Destroy(effect, 1.0f);
-            enemy.DestoryEnemy();
+            enemy.DestroyEnemy();
             if(dbHP <= 0)
             {
                 dbHP = 0;

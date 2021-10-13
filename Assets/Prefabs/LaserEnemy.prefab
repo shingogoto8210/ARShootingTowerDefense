@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636743682907685303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.37, y: 1.164, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 2661785018836942341}
@@ -99,12 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 0
-  maxEnemyHP: 3
-  point: 500
+  maxEnemyHP: 1
+  point: 200
   itemsList:
   - {fileID: 6059028710578789958, guid: 17cf4f83d21069642840cae18417de52, type: 3}
   - {fileID: 8366439890525549831, guid: ce6d85072329b6442bbe2fe2cebef297, type: 3}
-  dropRate: 20
+  dropRate: 40
 --- !u!135 &3474713701951099810
 SphereCollider:
   m_ObjectHideFlags: 0
