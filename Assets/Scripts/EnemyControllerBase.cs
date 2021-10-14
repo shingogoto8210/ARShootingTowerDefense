@@ -12,7 +12,7 @@ public class EnemyControllerBase : MonoBehaviour
     [SerializeField]
     protected int point;
     protected UIManager uiManager;
-    protected GameManager gameManager;
+    public GameManager gameManager;
     public List<ItemControllerBase> itemsList = new List<ItemControllerBase>();
     [SerializeField]
     protected int dropRate;
@@ -29,19 +29,21 @@ public class EnemyControllerBase : MonoBehaviour
     {
         enemyHP--;
         ScoreManager.instance.CountCombo();
+        uiManager.UpdateDisplayCombo();
         gameManager.skillPoint++;
         uiManager.UpdateDisplaySkillGage();
-        //uiManager.UpdateDisplaySkillButton();
         if (enemyHP <= 0)
         {
-            JudgeDropItem();
             DestroyEnemy();
         }
     }
 
     public virtual void DestroyEnemy()
     {
+        JudgeDropItem();
         Destroy(this.gameObject);
+        ScoreManager.instance.score += point;
+        uiManager.UpdateDisplayScore();
         if (tween != null)
         {
             this.tween.Kill();
@@ -49,8 +51,6 @@ public class EnemyControllerBase : MonoBehaviour
         GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
         Destroy(effect, 1.0f);
         gameManager.enemiesList.Remove(this);
-        ScoreManager.instance.score += point;
-        uiManager.UpdateDisplayScore();
         gameManager.enemyCount--;
         gameManager.CheckClear();
     }

@@ -39,11 +39,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image imgSkillGage;
     [SerializeField]
-    public GameObject iceButton;
+    public SkillButton iceButton;
     [SerializeField]
-    public GameObject meteorButton;
+    public SkillButton meteorButton;
     [SerializeField]
-    public GameObject lightningButton;
+    public SkillButton lightningButton;
 
 
     public void UpdateDisplayScore()
@@ -59,7 +59,8 @@ public class UIManager : MonoBehaviour
     public IEnumerator CreateOpeningLogo()
     {
         openingLogo = Instantiate(openingLogoPrefab, canvasTran, false);
-        yield return StartCoroutine(openingLogo.LogoEffect());
+        //yield return StartCoroutine(openingLogo.LogoEffect());
+        yield return new WaitForSeconds(1.0f);
     }
 
     public IEnumerator CreateClearLogo()
@@ -118,26 +119,26 @@ public class UIManager : MonoBehaviour
 
     public void UpdateDisplaySkillButton()
     {
-        if(gameManager.skillPoint >= 3)
+        if(gameManager.skillPoint >= SkillButton.icePoint)
         {
             lightningButton.GetComponent<Button>().interactable = false;
             meteorButton.GetComponent<Button>().interactable = false;
             iceButton.GetComponent<Button>().interactable = true;
         }
-        if (gameManager.skillPoint >= 5)
+        if (gameManager.skillPoint >= SkillButton.meteorPoint)
         {
             lightningButton.GetComponent<Button>().interactable = false;
             meteorButton.GetComponent<Button>().interactable = true;
             iceButton.GetComponent<Button>().interactable = true;
 
         }
-        if (gameManager.skillPoint >= 10)
+        if (gameManager.skillPoint >= SkillButton.lightningPoint)
         {
             lightningButton.GetComponent<Button>().interactable = true;
             meteorButton.GetComponent<Button>().interactable = true;
             iceButton.GetComponent<Button>().interactable = true;
         }
-        if(gameManager.skillPoint < 3)
+        if(gameManager.skillPoint < SkillButton.icePoint)
         {
             lightningButton.GetComponent<Button>().interactable = false;
             meteorButton.GetComponent<Button>().interactable = false;

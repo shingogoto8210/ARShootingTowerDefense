@@ -31,7 +31,7 @@ public class DefenseBase : MonoBehaviour
             {
                 dbHP = 0;
                 Destroy(gameObject);
-                gameManager.CheckGameOver();
+                gameManager.GameOver();
             }
         }
         else if (other.gameObject.CompareTag("EnemyLaser"))
@@ -44,7 +44,7 @@ public class DefenseBase : MonoBehaviour
             {
                 dbHP = 0;
                 Destroy(gameObject);
-                gameManager.CheckGameOver();
+                gameManager.GameOver();
             }
         }
     }

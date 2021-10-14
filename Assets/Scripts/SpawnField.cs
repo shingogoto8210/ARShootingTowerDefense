@@ -31,12 +31,14 @@ public class SpawnField : MonoBehaviour
                     Pose hitPose = hits[0].pose;
                     StageManager stage = Instantiate(DataBaseManager.instance.stageDataSO.stageDatasList[GameData.instance.stageNo].stagePrefab, new Vector3(hitPose.position.x, hitPose.position.y, hitPose.position.z + 2.0f), hitPose.rotation);
                     gameManager.currentGameState = ARState.Ready;
+                    gameManager.stage = stage;
                     gameManager.defenseBase = stage.defenseBase;
                     for(int i = 0;i < stage.enemyGenerators.Length; i++)
                     {
                         stage.enemyGenerators[i].SetUpGenerator(gameManager);
                     }
                     StartCoroutine(uiManager.CreateOpeningLogo());
+                    StartCoroutine(uiManager.openingLogo.LogoEffect());
                     isSpawnField = true;
                 }
             }

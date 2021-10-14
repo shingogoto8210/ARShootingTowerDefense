@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
+//using UnityEngine.XR.ARFoundation;
+//using UnityEngine.XR.ARSubsystems;
 
 public class ARManager : MonoBehaviour
 {
@@ -62,7 +62,6 @@ public class ARManager : MonoBehaviour
     {
         yield return new WaitForSeconds(6.0f);
         uiManager.UpdateDisplayHPGage();
-        uiManager.UpdateDisplaySkillGage();
         gameManager.currentGameState = ARState.Play;
     }
 }

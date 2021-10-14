@@ -12,4 +12,6 @@ public class LaserEnemyController : EnemyControllerBase
         Destroy(effect, 1.0f);
         this.gameObject.transform.LookAt(target.transform);
     }
+
+
 }

@@ -7,19 +7,13 @@ public class SkillButton : MonoBehaviour
 {
     [SerializeField]
     private GameManager gameManager;
-    [SerializeField]
-    private GameObject meteorPrefab;
-    [SerializeField]
-    private GameObject lightningPrefab;
-    private Button btn;
+    public const int icePoint = 3;
+    public const int meteorPoint = 5;
+    public const int lightningPoint = 10;
     
 
-    void Start()
-    {
-        btn = GetComponent<Button>();
-        btn.interactable = false;
-
-    }
+    
+    
     public void OnClickIce()
     {
         StartCoroutine(Ice());
@@ -40,9 +34,11 @@ public class SkillButton : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Ice()
     {
-        if(gameManager.skillPoint >= 3 && gameManager.currentGameState == ARState.Play)
+        if(gameManager.skillPoint >= icePoint && gameManager.currentGameState == ARState.Play)
         {
-            UseSkillPoint(3);
+            UseSkillPoint(icePoint);
+            gameManager.uiManager.UpdateDisplaySkillButton();
+            IceEffect();
             gameManager.isStop = true;
             for (int i = 0; i < gameManager.enemiesList.Count; i++)
             {
@@ -69,21 +65,23 @@ public class SkillButton : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Meteor()
     {
-        if (gameManager.skillPoint >= 5 && gameManager.currentGameState == ARState.Play)
+        if (gameManager.skillPoint >= meteorPoint && gameManager.currentGameState == ARState.Play)
         {
-            UseSkillPoint(5);
-            int random = Random.Range(0, gameManager.enemiesList.Count);
+            UseSkillPoint(meteorPoint);
+            gameManager.uiManager.UpdateDisplaySkillButton();
+            MeteorEffect();
+            int random = Random.Range(1, gameManager.enemiesList.Count);
             List<EnemyControllerBase> destroyEnemyList = new List<EnemyControllerBase>();
             for (int i = 0; i < random; i++)
             {
-                GameObject meteor = Instantiate(meteorPrefab, gameManager.enemiesList[i].transform.position, Quaternion.identity);
+                GameObject meteor = Instantiate(EffectDataBase.instance.meteorEffect, gameManager.enemiesList[i].transform.position, Quaternion.identity);
                 Destroy(meteor, 2.0f);
-                yield return new WaitForSeconds(0.5f);
-                //gameManager.enemiesList[i].DestroyEnemy();
                 destroyEnemyList.Add(gameManager.enemiesList[i]);
-                gameManager.enemiesList[i].SwitchGameObject(false);
                 ScoreManager.instance.CountCombo();
+                gameManager.uiManager.UpdateDisplayCombo();
             }
+            yield return new WaitForSeconds(0.5f);
+
             for (int i = 0; i < destroyEnemyList.Count; i++)
             {
                 destroyEnemyList[i].DestroyEnemy();
@@ -98,41 +96,51 @@ public class SkillButton : MonoBehaviour
     /// <returns></returns>
     public IEnumerator lightning()
     {
-        if (gameManager.skillPoint >= 10 && gameManager.currentGameState == ARState.Play)
+        if (gameManager.skillPoint >= lightningPoint && gameManager.currentGameState == ARState.Play)
         {
-            UseSkillPoint(10);
+            UseSkillPoint(lightningPoint);
+            gameManager.uiManager.UpdateDisplaySkillButton();
+            LightningEffect();
             gameManager.isStop = true;
-            GameObject lightning = Instantiate(lightningPrefab, gameManager.stage.transform.position, Quaternion.identity);
-            Destroy(lightning, 2.0f);
-            yield return new WaitForSeconds(0.5f);
+
+            yield return new WaitForSeconds(1.0f);
+
+            List<EnemyControllerBase> destroyEnemyList = new List<EnemyControllerBase>();
             for (int i = 0; i < gameManager.enemiesList.Count; i++)
             {
                 if(gameManager.enemiesList[i] != null)
                 {
                     gameManager.enemiesList[i].StopEnemy();
+                    gameManager.enemiesList[i].enemyHP--;
+                    ScoreManager.instance.CountCombo();
+                    gameManager.uiManager.UpdateDisplayCombo();
+                    GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(gameManager.enemiesList[i].transform.position.x, gameManager.enemiesList[i].transform.position.y + 0.25f, gameManager.enemiesList[i].transform.position.z), Quaternion.identity);
+                    Destroy(effect, 1.0f);
+                    if (gameManager.enemiesList[i].enemyHP <= 0)
+                    {
+                        destroyEnemyList.Add(gameManager.enemiesList[i]);
+                        gameManager.enemiesList[i].SwitchGameObject(false);
+                        continue;
+                    }
+
                     GameObject lightningEffect = Instantiate(EffectDataBase.instance.lightningEffect, gameManager.enemiesList[i].transform.position, Quaternion.identity);
                     Destroy(lightningEffect, 5.0f);
                 }
-                
+            }
+
+            for (int i = 0; i < destroyEnemyList.Count; i++)
+            {
+                destroyEnemyList[i].DestroyEnemy();
             }
             yield return new WaitForSeconds(5.0f);
+
             if (gameManager.enemiesList != null)
             {
-                List<EnemyControllerBase> enemies = new List<EnemyControllerBase>();
                 for(int i = 0; i < gameManager.enemiesList.Count; i++)
                 {
-                    enemies.Add(gameManager.enemiesList[i]);
+                    gameManager.enemiesList[i].ResumeEnemy();
                 }
-                Debug.Log(enemies.Count);
 
-                for(int i = 0; i < enemies.Count ; i++)
-                {
-                  
-                        enemies[i].AttackEnemy();
-                        enemies[i].ResumeEnemy();
-                        Debug.Log(i);
-                }
-                
             }
             gameManager.isStop = false;
         }
@@ -142,5 +150,27 @@ public class SkillButton : MonoBehaviour
     {
         gameManager.skillPoint -= point;
         gameManager.uiManager.UpdateDisplaySkillGage();
+    }
+
+    private void IceEffect()
+    {
+        GameObject iceStartEffect = Instantiate(EffectDataBase.instance.iceStartEffect, gameManager.stage.transform.position, Quaternion.identity);
+        Destroy(iceStartEffect, 1.0f);
+        GameObject iceAttackEffect = Instantiate(EffectDataBase.instance.iceAttackEffect, gameManager.stage.transform.position, Quaternion.identity);
+        Destroy(iceAttackEffect, 3.0f);
+    }
+
+    private void MeteorEffect()
+    {
+        GameObject meteorStartEffect = Instantiate(EffectDataBase.instance.meteorStartEffect, gameManager.stage.transform.position, Quaternion.identity);
+        Destroy(meteorStartEffect, 1.0f);
+    }
+
+    private void LightningEffect()
+    {
+        GameObject lightningStartEffect = Instantiate(EffectDataBase.instance.lightningStartEffect, gameManager.stage.transform.position, Quaternion.identity);
+        Destroy(lightningStartEffect, 1.0f);
+        GameObject lightningAttackEffect = Instantiate(EffectDataBase.instance.lightningAttackEffect, gameManager.stage.transform.position, Quaternion.identity);
+        Destroy(lightningAttackEffect, 4.0f);
     }
 }

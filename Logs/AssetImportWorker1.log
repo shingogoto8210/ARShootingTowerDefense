@@ -15,12 +15,12 @@ C:/Users/Owner/ARShootingTowerDefense
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-49857
+49911
 Successfully changed project path to: C:/Users/Owner/ARShootingTowerDefense
 C:/Users/Owner/ARShootingTowerDefense
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 6713.17 ms, found 9 plugins.
-Preloading 1 native plugins for Editor in 8.17 ms.
+Refreshing native plugins compatible for Editor in 601.41 ms, found 9 plugins.
+Preloading 1 native plugins for Editor in 9.46 ms.
 Initialize engine version: 2020.3.12f1 (b3b2c6512326)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/Owner/ARShootingTowerDefense/Assets

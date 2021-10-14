@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dbHP: 0
-  maxdbHP: 10
+  maxdbHP: 5
   gameManager: {fileID: 0}
 --- !u!65 &2707783072506426739
 BoxCollider:

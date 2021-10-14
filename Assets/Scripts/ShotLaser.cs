@@ -19,12 +19,15 @@ public class ShotLaser : MonoBehaviour
     private GameManager gameManager;
     [SerializeField]
     private Text txtShotLaserCount;
+    [SerializeField]
+    private int maxShotTimer;
 
     void Start()
     {
-        shotTimer = shotInterval;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         target = GameObject.Find("DefenseBase").GetComponent<DefenseBase>();
+        int maxShotTimer = Random.Range(3, 10);
+        shotTimer = maxShotTimer;
     }
 
     void Update()
@@ -40,7 +43,9 @@ public class ShotLaser : MonoBehaviour
                 if(shotTimer <= 0)
                 {
                     Shot();
-                    shotTimer = shotInterval;
+                    int maxShotTimer = Random.Range(3, 10);
+                    shotTimer = maxShotTimer;
+                    Debug.Log(maxShotTimer);
                 }
             }
         }

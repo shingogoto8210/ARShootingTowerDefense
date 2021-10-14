@@ -12,7 +12,14 @@ public class EffectDataBase : MonoBehaviour
     public GameObject itemGetEffect;
     public GameObject iceEffect;
     public GameObject lightningEffect;
+    public GameObject meteorEffect;
     public GameObject enemySummonEffect;
+    public GameObject iceStartEffect;
+    public GameObject meteorStartEffect;
+    public GameObject lightningStartEffect;
+    public GameObject lightningAttackEffect;
+    public GameObject iceAttackEffect;
+
 
     void Awake()
     {

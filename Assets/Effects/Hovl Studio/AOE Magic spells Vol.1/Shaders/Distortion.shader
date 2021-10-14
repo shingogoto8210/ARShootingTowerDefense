@@ -4,29 +4,30 @@ Shader "Hovl/Particles/Distortion"
 	{
 		_NormalMap("Normal Map", 2D) = "bump" {}
 		_Distortionpower("Distortion power", Float) = 0.05
-		_InvFade ("Soft Particles Factor", Range(0.01,3.0)) = 1.0
+		_InvFade("Soft Particles Factor", Range(0.01,3.0)) = 1.0
 	}
 
-	Category 
-	{
-		SubShader
+		Category
 		{
-			Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" "PreviewType"="Plane" }
-			Blend SrcAlpha OneMinusSrcAlpha
-			Cull Off
-			Lighting Off 
-			ZWrite Off
-			Fog { Mode Off}
-			GrabPass{ }
+			SubShader
+			{
+				Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" "PreviewType" = "Plane" }
+				Blend SrcAlpha OneMinusSrcAlpha
+				Cull Off
+				Lighting Off
+				ZWrite Off
+				Fog { Mode Off}
+				GrabPass{ }
 
-			Pass {		
-				CGPROGRAM
-				#pragma vertex vert
-				#pragma fragment frag
-				#pragma fragmentoption ARB_precision_hint_fastest
-				#pragma multi_compile_particles
-				#include "UnityCG.cginc"
-				uniform sampler2D_float _CameraDepthTexture;
+				Pass {
+					CGPROGRAM
+					#pragma vertex vert
+					#pragma fragment frag
+					#pragma fragmentoption ARB_precision_hint_fastest
+					#pragma multi_compile_particles
+					#include "UnityCG.cginc"
+					//uniform sampler2D_float _CameraDepthTexture;
+				UNITY_DECLARE_DEPTH_TEXTURE(_CameraDepthTexture);
 				uniform float _InvFade;
 				uniform sampler2D _GrabTexture;
 				uniform sampler2D _NormalMap;

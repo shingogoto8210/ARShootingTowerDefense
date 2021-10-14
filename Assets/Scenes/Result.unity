@@ -686,6 +686,11 @@ MonoBehaviour:
   txtTimeBonus: {fileID: 2147233146}
   txtClearPoint: {fileID: 78061613}
   txtTotalClearPoint: {fileID: 0}
+  imgHPGage: {fileID: 0}
+  imgSkillGage: {fileID: 0}
+  iceButton: {fileID: 0}
+  meteorButton: {fileID: 0}
+  lightningButton: {fileID: 0}
 --- !u!4 &981659920
 Transform:
   m_ObjectHideFlags: 0
@@ -795,6 +800,7 @@ GameObject:
   - component: {fileID: 1081246682}
   - component: {fileID: 1081246681}
   - component: {fileID: 1081246680}
+  - component: {fileID: 1081246684}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -892,6 +898,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1081246684
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081246679}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1373794243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1589,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNo: 0
+  imgShot: {fileID: 0}
+  canvasTran: {fileID: 0}
+  canvasGroup: {fileID: 1081246684}
 --- !u!222 &8847190991757817286
 CanvasRenderer:
   m_ObjectHideFlags: 0

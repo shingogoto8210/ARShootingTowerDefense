@@ -23,10 +23,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Start()
     {
-        ScoreManager.instance.score = 0;
-        ScoreManager.instance.comboCount = 0;
-        uiManager.UpdateDisplayTimer();
-        enemyCount = DataBaseManager.instance.stageDataSO.stageDatasList[GameData.instance.stageNo].enemyCount;
+        
+        GameStartToCommon();
         if (currentGameState == ARState.Debug)
         {
             currentGameState = ARState.Ready;
@@ -37,6 +35,7 @@ public class GameManager : MonoBehaviour
             }
             defenseBase = stage.defenseBase;
             yield return StartCoroutine(uiManager.CreateOpeningLogo());
+            yield return StartCoroutine(uiManager.openingLogo.LogoEffect());
             uiManager.UpdateDisplayHPGage();
             uiManager.UpdateDisplaySkillGage();
             currentGameState = ARState.Play;
@@ -57,9 +56,7 @@ public class GameManager : MonoBehaviour
                 if (limitTime <= 0)
                 {
                     limitTime = 0;
-                    GameUpToCommon();
-                    StartCoroutine(uiManager.CreateGameOverLogo());
-                    SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 6.0f);
+                    GameOver();
                 }
             }
             ScoreManager.instance.ResetComboTimer();
@@ -72,7 +69,7 @@ public class GameManager : MonoBehaviour
         if (enemyCount <= 0 && currentGameState == ARState.Play)
         {
             enemyCount = 0;
-            GameUpToCommon();
+            currentGameState = ARState.GameUp;
             CulculateScore();
             StartCoroutine(uiManager.CreateClearLogo());
             SceneStateManager.instance.PreparateLoadSceneState(SceneState.Result, 6.0f);
@@ -87,9 +84,9 @@ public class GameManager : MonoBehaviour
         ScoreManager.instance.totalClearPoint += ScoreManager.instance.clearPoint;
     }
 
-    public void CheckGameOver()
+    public void GameOver()
     {
-        GameUpToCommon();
+        currentGameState = ARState.GameUp;
         for (int i = 0; i < enemiesList.Count; i++)
         {
             enemiesList[i].tween.Kill();
@@ -98,9 +95,17 @@ public class GameManager : MonoBehaviour
         SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 6.0f);
     }
 
-    public void GameUpToCommon()
+    public void GameStartToCommon()
     {
-        currentGameState = ARState.GameUp;
+        ScoreManager.instance.score = 0;
+        ScoreManager.instance.comboCount = 0;
+        skillPoint = 0;
+        uiManager.UpdateDisplaySkillButton();
+        uiManager.UpdateDisplayTimer();
+        //uiManager.UpdateDisplayHPGage();
+        uiManager.UpdateDisplaySkillGage();
+        uiManager.UpdateDisplayCombo();
+        enemyCount = DataBaseManager.instance.stageDataSO.stageDatasList[GameData.instance.stageNo].enemyCount;
     }
 
     
