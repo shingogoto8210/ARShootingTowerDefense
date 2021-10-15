@@ -66,7 +66,9 @@ public class GameManager : MonoBehaviour
 
     public void CheckClear()
     {
-        if (enemyCount <= 0 && currentGameState == ARState.Play)
+        //if (enemyCount <= 0 && currentGameState == ARState.Play)
+        if (enemiesList.Count <= 0 && currentGameState == ARState.Play)
+
         {
             enemyCount = 0;
             currentGameState = ARState.GameUp;

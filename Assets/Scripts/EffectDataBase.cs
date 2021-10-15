@@ -19,6 +19,7 @@ public class EffectDataBase : MonoBehaviour
     public GameObject lightningStartEffect;
     public GameObject lightningAttackEffect;
     public GameObject iceAttackEffect;
+    public GameObject bossStartEffect;
 
 
     void Awake()

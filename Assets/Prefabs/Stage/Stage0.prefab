@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dbHP: 0
-  maxdbHP: 5
+  maxdbHP: 10
   gameManager: {fileID: 0}
 --- !u!65 &2707783072506426739
 BoxCollider:
@@ -384,6 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyController: {fileID: 2672893436256605271, guid: e06c682c48011e04c9ed3014a55c959e,
     type: 3}
+  bossController: {fileID: 0}
 --- !u!1 &2707783073300287883
 GameObject:
   m_ObjectHideFlags: 0

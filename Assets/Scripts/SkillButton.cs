@@ -60,7 +60,7 @@ public class SkillButton : MonoBehaviour
         
     }
     /// <summary>
-    /// “G‚ğƒ‰ƒ“ƒ_ƒ€‚É”j‰ó‚·‚é
+    /// “G‚Éƒ‰ƒ“ƒ_ƒ€‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
     /// </summary>
     /// <returns></returns>
     public IEnumerator Meteor()
@@ -75,12 +75,23 @@ public class SkillButton : MonoBehaviour
             for (int i = 0; i < random; i++)
             {
                 GameObject meteor = Instantiate(EffectDataBase.instance.meteorEffect, gameManager.enemiesList[i].transform.position, Quaternion.identity);
-                Destroy(meteor, 2.0f);
-                destroyEnemyList.Add(gameManager.enemiesList[i]);
                 ScoreManager.instance.CountCombo();
                 gameManager.uiManager.UpdateDisplayCombo();
+                Destroy(meteor, 2.0f);
+                gameManager.enemiesList[i].enemyHP--;
+                if (gameManager.enemiesList[i].enemyHP <= 0)
+                {
+                    destroyEnemyList.Add(gameManager.enemiesList[i]);
+                    //gameManager.enemiesList[i].SwitchGameObject(false);
+                }
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
+            for(int i = 0; i < random; i++)
+            {
+                GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(gameManager.enemiesList[i].transform.position.x, gameManager.enemiesList[i].transform.position.y + 0.25f, gameManager.enemiesList[i].transform.position.z), Quaternion.identity);
+                Destroy(effect, 1.0f);
+
+            }
 
             for (int i = 0; i < destroyEnemyList.Count; i++)
             {

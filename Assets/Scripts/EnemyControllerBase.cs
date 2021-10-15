@@ -51,7 +51,7 @@ public class EnemyControllerBase : MonoBehaviour
         GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
         Destroy(effect, 1.0f);
         gameManager.enemiesList.Remove(this);
-        gameManager.enemyCount--;
+        //gameManager.enemyCount--;
         gameManager.CheckClear();
     }
 
@@ -95,5 +95,17 @@ public class EnemyControllerBase : MonoBehaviour
         this.gameManager = gameManager;
         this.uiManager = gameManager.uiManager;
         this.target = gameManager.defenseBase.gameObject;
+    }
+
+    public virtual void DefenseBaseDestroyEnemy()
+    {
+        Destroy(this.gameObject);
+        if (tween != null)
+        {
+            this.tween.Kill();
+        }
+        gameManager.enemiesList.Remove(this);
+        //gameManager.enemyCount--;
+        gameManager.CheckClear();
     }
 }

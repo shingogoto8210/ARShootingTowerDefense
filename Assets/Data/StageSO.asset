@@ -25,3 +25,7 @@ MonoBehaviour:
     enemyCount: 6
     stagePrefab: {fileID: 369164117898975252, guid: bb3b849e2fe3f1b41a09b9aa77d537a5,
       type: 3}
+  - stageNo: 3
+    enemyCount: 6
+    stagePrefab: {fileID: 8445019994983673864, guid: 9ba9b9b9089bb5d4e9b5e49dacf960aa,
+      type: 3}

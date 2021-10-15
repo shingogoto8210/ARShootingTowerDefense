@@ -26,7 +26,7 @@ public class ShotLaser : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         target = GameObject.Find("DefenseBase").GetComponent<DefenseBase>();
-        int maxShotTimer = Random.Range(3, 10);
+        int maxShotTimer = Random.Range(5, 10);
         shotTimer = maxShotTimer;
     }
 
@@ -43,7 +43,7 @@ public class ShotLaser : MonoBehaviour
                 if(shotTimer <= 0)
                 {
                     Shot();
-                    int maxShotTimer = Random.Range(3, 10);
+                    int maxShotTimer = Random.Range(5, 10);
                     shotTimer = maxShotTimer;
                     Debug.Log(maxShotTimer);
                 }

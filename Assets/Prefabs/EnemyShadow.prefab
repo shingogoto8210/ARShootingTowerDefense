@@ -16348,8 +16348,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 0
-  maxEnemyHP: 3
+  maxEnemyHP: 1
   point: 100
+  gameManager: {fileID: 0}
   itemsList:
   - {fileID: 6059028710578789958, guid: 17cf4f83d21069642840cae18417de52, type: 3}
   - {fileID: 8366439890525549831, guid: ce6d85072329b6442bbe2fe2cebef297, type: 3}
