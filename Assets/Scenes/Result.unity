@@ -1525,8 +1525,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8847190991757817285}
-        m_TargetAssemblyTypeName: Button, Assembly-CSharp
-        m_MethodName: OnClickLoadToStageSelect
+        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
+        m_MethodName: OnClickLoadToStageSelectFromResult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

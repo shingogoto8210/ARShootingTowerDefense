@@ -13,6 +13,14 @@ public class ShotBullet : MonoBehaviour
     private GameManager gameManager;
     private bool isShot;
     private int shotInterval;
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip shotSound;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -31,6 +39,7 @@ public class ShotBullet : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Rigidbody rbBullet = bullet.GetComponent<Rigidbody>();
             rbBullet.AddForce(transform.forward * shotPower);
+            audioSource.PlayOneShot(shotSound);
             Instantiate(EffectDataBase.instance.shotBulletEffect, transform.position, Quaternion.identity);
             Destroy(bullet, 5.0f);
             isShot = false;

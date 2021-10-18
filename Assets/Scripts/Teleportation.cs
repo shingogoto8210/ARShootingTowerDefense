@@ -16,9 +16,9 @@ public class Teleportation : MonoBehaviour
 
     public void MoveRandom()
     {
-        int randomPos_x = Random.Range(-2, 2);
-        int randomPos_y = Random.Range(1, 3);
-        int randomPos_z = Random.Range(-1, 2);
+        float randomPos_x = Random.Range(-2, 2);
+        float randomPos_y = Random.Range(1, 3);
+        float randomPos_z = Random.Range(-1, 2);
         transform.position = new Vector3(enemy.gameManager.stage.transform.position.x + randomPos_x, enemy.gameManager.stage.transform.position.y+ randomPos_y, enemy.gameManager.stage.transform.position.z + randomPos_z);
         this.gameObject.transform.LookAt(target) ;
 
@@ -33,4 +33,5 @@ public class Teleportation : MonoBehaviour
             yield return new WaitForSeconds(randomTime);
         }
     }
+
 }

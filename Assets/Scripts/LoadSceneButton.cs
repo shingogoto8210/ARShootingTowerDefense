@@ -22,12 +22,20 @@ public class LoadSceneButton : MonoBehaviour
         GameData.instance.stageNo = stageNo;
     }
     
-    public void OnClickLoadToStageSelect()
+    public void OnClickLoadToStageSelectFromTitle()
     {
         if(imgShot != null)
         {
             Instantiate(imgShot,canvasTran,false);
+            GetComponent<AudioSource>().Play();
+
         }
+        SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 1.5f);
+        canvasGroup.DOFade(0.0f, 1.5f);
+    }
+
+    public void OnClickLoadToStageSelectFromResult()
+    {
         SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 1.5f);
         canvasGroup.DOFade(0.0f, 1.5f);
     }

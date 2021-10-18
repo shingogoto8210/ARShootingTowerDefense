@@ -21,6 +21,7 @@ public class ShotLaser : MonoBehaviour
     private Text txtShotLaserCount;
     [SerializeField]
     private int maxShotTimer;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class ShotLaser : MonoBehaviour
         target = GameObject.Find("DefenseBase").GetComponent<DefenseBase>();
         int maxShotTimer = Random.Range(5, 10);
         shotTimer = maxShotTimer;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -43,9 +45,10 @@ public class ShotLaser : MonoBehaviour
                 if(shotTimer <= 0)
                 {
                     Shot();
+                    audioSource.PlayOneShot(AudioDataBase.instance.enemyLaserSound);
                     int maxShotTimer = Random.Range(5, 10);
                     shotTimer = maxShotTimer;
-                    Debug.Log(maxShotTimer);
+                    //Debug.Log(maxShotTimer);
                 }
             }
         }

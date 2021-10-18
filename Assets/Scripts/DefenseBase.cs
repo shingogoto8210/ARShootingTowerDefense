@@ -11,17 +11,20 @@ public class DefenseBase : MonoBehaviour
     public float maxdbHP;
     [SerializeField]
     private GameManager gameManager;
+    private AudioSource audioSource;
 
     void Start()
     {
         dbHP = maxdbHP;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.TryGetComponent(out EnemyControllerBase enemy))
         {
+            audioSource.PlayOneShot(AudioDataBase.instance.enemyDestroySound);
             dbHP--;
             gameManager.uiManager.UpdateDisplayHPGage();
             GameObject effect = Instantiate(EffectDataBase.instance.defenseBaseAttackEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
@@ -36,6 +39,8 @@ public class DefenseBase : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("EnemyLaser"))
         {
+            audioSource.PlayOneShot(AudioDataBase.instance.enemyDestroySound);
+
             dbHP--;
             gameManager.uiManager.UpdateDisplayHPGage();
             GameObject effect = Instantiate(EffectDataBase.instance.defenseBaseAttackEffect, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);

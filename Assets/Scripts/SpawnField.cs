@@ -38,6 +38,7 @@ public class SpawnField : MonoBehaviour
                         stage.enemyGenerators[i].SetUpGenerator(gameManager);
                     }
                     StartCoroutine(uiManager.CreateOpeningLogo());
+                    gameManager.audioSource.Play();
                     StartCoroutine(uiManager.openingLogo.LogoEffect());
                     isSpawnField = true;
                 }

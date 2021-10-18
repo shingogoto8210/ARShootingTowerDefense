@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private float timer;
     public bool isStop = false;
     public float skillPoint;
+    public AudioSource audioSource;
     
 
     IEnumerator Start()
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
             }
             defenseBase = stage.defenseBase;
             yield return StartCoroutine(uiManager.CreateOpeningLogo());
+            audioSource.Play();
             yield return StartCoroutine(uiManager.openingLogo.LogoEffect());
             uiManager.UpdateDisplayHPGage();
             uiManager.UpdateDisplaySkillGage();
@@ -108,6 +110,7 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateDisplaySkillGage();
         uiManager.UpdateDisplayCombo();
         enemyCount = DataBaseManager.instance.stageDataSO.stageDatasList[GameData.instance.stageNo].enemyCount;
+        audioSource = GetComponent<AudioSource>();
     }
 
     

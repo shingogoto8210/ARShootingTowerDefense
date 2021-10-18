@@ -6,9 +6,9 @@ using DG.Tweening;
 public class EnemyControllerBase : MonoBehaviour
 {
     protected GameObject target;
-    public int enemyHP;
+    public float enemyHP;
     [SerializeField]
-    protected int maxEnemyHP;
+    protected float maxEnemyHP;
     [SerializeField]
     protected int point;
     protected UIManager uiManager;
@@ -17,12 +17,15 @@ public class EnemyControllerBase : MonoBehaviour
     [SerializeField]
     protected int dropRate;
     public Tween tween;
+    private AudioSource audioSource;
     
 
     protected virtual void Start()
     {
         enemyHP = maxEnemyHP;
         gameManager.enemiesList.Add(this);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(AudioDataBase.instance.enemySummonSound);
     }
 
     public virtual void AttackEnemy()
@@ -30,8 +33,9 @@ public class EnemyControllerBase : MonoBehaviour
         enemyHP--;
         ScoreManager.instance.CountCombo();
         uiManager.UpdateDisplayCombo();
-        gameManager.skillPoint++;
+        gameManager.skillPoint = Mathf.Clamp(gameManager.skillPoint + 1, 0, 10);
         uiManager.UpdateDisplaySkillGage();
+        audioSource.PlayOneShot(AudioDataBase.instance.enemyAttackSound);
         if (enemyHP <= 0)
         {
             DestroyEnemy();
@@ -40,6 +44,8 @@ public class EnemyControllerBase : MonoBehaviour
 
     public virtual void DestroyEnemy()
     {
+        //audioSource.PlayOneShot(AudioDataBase.instance.enemyDestroySound);
+
         JudgeDropItem();
         Destroy(this.gameObject);
         ScoreManager.instance.score += point;
@@ -53,6 +59,7 @@ public class EnemyControllerBase : MonoBehaviour
         gameManager.enemiesList.Remove(this);
         //gameManager.enemyCount--;
         gameManager.CheckClear();
+        
     }
 
     public void SwitchGameObject(bool isSwitch)
@@ -70,7 +77,6 @@ public class EnemyControllerBase : MonoBehaviour
             random = Random.Range(0, itemsList.Count);
             ItemControllerBase item = Instantiate(itemsList[random], new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
             item.itemNo = random;
-            //Destroy(item.gameObject, 5.0f);
         }
     }
 
@@ -99,6 +105,7 @@ public class EnemyControllerBase : MonoBehaviour
 
     public virtual void DefenseBaseDestroyEnemy()
     {
+        //audioSource.PlayOneShot(AudioDataBase.instance.enemyDestroySound);
         Destroy(this.gameObject);
         if (tween != null)
         {

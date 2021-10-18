@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LaserEnemyGenerator : MonoBehaviour
+public class BossEnemyGenerator : MonoBehaviour
 {
     [SerializeField]
     private EnemyControllerBase laserEnemy;
@@ -47,6 +47,8 @@ public class LaserEnemyGenerator : MonoBehaviour
 
     private void Generate()
     {
+        GameObject effect = Instantiate(EffectDataBase.instance.enemySummonEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1.0f);
         EnemyControllerBase enemy_0 = Instantiate(laserEnemy, new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z), Quaternion.Euler(0,-180,0));
         EnemyControllerBase enemy_1 = Instantiate(enemy, new Vector3(transform.position.x, gameManager.stage.transform.position.y, transform.position.z), Quaternion.Euler(0, -180, 0));
         EnemyControllerBase enemy_2 = Instantiate(laserEnemy, new Vector3(transform.position.x + 1.5f, transform.position.y, transform.position.z), Quaternion.Euler(0, -180, 0));
