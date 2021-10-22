@@ -20,11 +20,22 @@ public class SceneStateManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// シーン遷移の準備
+    /// </summary>
+    /// <param name="sceneState"></param>
+    /// <param name="seconds"></param>
     public void PreparateLoadSceneState(SceneState sceneState,float seconds)
     {
         StartCoroutine(LoadSceneState(sceneState,seconds));
     }
 
+    /// <summary>
+    /// 引数でもらったシーンに遷移する
+    /// </summary>
+    /// <param name="sceneState"></param>
+    /// <param name="seconds"></param>
+    /// <returns></returns>
     public IEnumerator LoadSceneState(SceneState sceneState,float seconds)
     {
         yield return new WaitForSeconds(seconds);

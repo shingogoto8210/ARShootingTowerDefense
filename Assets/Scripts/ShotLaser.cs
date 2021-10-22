@@ -32,6 +32,9 @@ public class ShotLaser : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// ランダムで決まった時間を経過するとLaserが発射される
+    /// </summary>
     void Update()
     {
         if(gameManager.currentGameState == ARState.Play && gameManager.isStop == false)
@@ -54,6 +57,9 @@ public class ShotLaser : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Laserを生成し，DefenseBaseに向けて移動させる
+    /// </summary>
     private void Shot()
     {
         //target = gameManager.stage.defenseBase;
@@ -63,11 +69,18 @@ public class ShotLaser : MonoBehaviour
         tween = laser.transform.DOMove(target.transform.position, 0.5f).SetEase(Ease.Linear).OnComplete(() => DestroyLaser());
     }
 
+    /// <summary>
+    /// Laserを破壊する
+    /// </summary>
     private void DestroyLaser()
     {
         tween.Kill();
         Destroy(laser);
     }
+
+    /// <summary>
+    /// Laserが発射するまでのカウントダウンを更新する
+    /// </summary>
     private void UpdateDisplayShotLaserCount()
     {
         txtShotLaserCount.text = shotTimer.ToString();

@@ -1,4 +1,6 @@
-
+/// <summary>
+/// SceneState‚ÌŠÇ—
+/// </summary>
 public enum SceneState
 {
     Title,

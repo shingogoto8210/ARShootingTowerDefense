@@ -11,9 +11,6 @@ public class SkillButton : MonoBehaviour
     public const int meteorPoint = 5;
     public const int lightningPoint = 10;
     
-
-    
-    
     public void OnClickIce()
     {
         StartCoroutine(Ice());
@@ -34,8 +31,10 @@ public class SkillButton : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Ice()
     {
-        if(gameManager.skillPoint >= icePoint && gameManager.currentGameState == ARState.Play)
+        if(gameManager.skillPoint >= icePoint && gameManager.currentGameState == ARState.Play )
         {
+            //isSkillがtrueのときは他のスキルを使えない
+            gameManager.isSkill = true;
             UseSkillPoint(icePoint);
             gameManager.uiManager.UpdateDisplaySkillButton();
             IceEffect();
@@ -56,8 +55,10 @@ public class SkillButton : MonoBehaviour
                 gameManager.enemiesList[i].ResumeEnemy();
             }
             gameManager.isStop = false;
+            gameManager.isSkill = false;
+            gameManager.uiManager.UpdateDisplaySkillButton();
         }
-        
+
     }
     /// <summary>
     /// 敵にランダムにダメージを与える
@@ -67,11 +68,15 @@ public class SkillButton : MonoBehaviour
     {
         if (gameManager.skillPoint >= meteorPoint && gameManager.currentGameState == ARState.Play)
         {
+            gameManager.isSkill = true;
             UseSkillPoint(meteorPoint);
             gameManager.uiManager.UpdateDisplaySkillButton();
             MeteorEffect();
             int random = Random.Range(1, gameManager.enemiesList.Count);
+            //スキルで破壊されたEnemyはこのリストに入れる
             List<EnemyControllerBase> destroyEnemyList = new List<EnemyControllerBase>();
+
+            //ランダムな敵に隕石を落とす
             for (int i = 0; i < random; i++)
             {
                 GameObject meteor = Instantiate(EffectDataBase.instance.meteorEffect, gameManager.enemiesList[i].transform.position, Quaternion.identity);
@@ -86,6 +91,8 @@ public class SkillButton : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(1.0f);
+
+            //隕石が落ちた敵の場所で爆発エフェクトを生成
             for(int i = 0; i < random; i++)
             {
                 GameObject effect = Instantiate(EffectDataBase.instance.enemyDestroyEffect, new Vector3(gameManager.enemiesList[i].transform.position.x, gameManager.enemiesList[i].transform.position.y + 0.25f, gameManager.enemiesList[i].transform.position.z), Quaternion.identity);
@@ -93,10 +100,14 @@ public class SkillButton : MonoBehaviour
 
             }
 
+            //隕石で倒した敵をDestroyして，gameManagerのリストからも消す
             for (int i = 0; i < destroyEnemyList.Count; i++)
             {
                 destroyEnemyList[i].DestroyEnemy();
             }
+
+            gameManager.isSkill = false;
+            gameManager.uiManager.UpdateDisplaySkillButton();
 
         }
     }
@@ -109,6 +120,7 @@ public class SkillButton : MonoBehaviour
     {
         if (gameManager.skillPoint >= lightningPoint && gameManager.currentGameState == ARState.Play)
         {
+            gameManager.isSkill = true;
             UseSkillPoint(lightningPoint);
             gameManager.uiManager.UpdateDisplaySkillButton();
             LightningEffect();
@@ -154,15 +166,24 @@ public class SkillButton : MonoBehaviour
 
             }
             gameManager.isStop = false;
+            gameManager.isSkill = false;
+            gameManager.uiManager.UpdateDisplaySkillButton();
         }
     }
 
+    /// <summary>
+    /// スキルポイントを消費し，スキルゲージの更新をする
+    /// </summary>
+    /// <param name="point"></param>
     private void UseSkillPoint(int point)
     {
         gameManager.skillPoint -= point;
         gameManager.uiManager.UpdateDisplaySkillGage();
     }
 
+    /// <summary>
+    /// 氷のエフェクトを生成
+    /// </summary>
     private void IceEffect()
     {
         GameObject iceStartEffect = Instantiate(EffectDataBase.instance.iceStartEffect, gameManager.stage.transform.position, Quaternion.identity);
@@ -171,12 +192,18 @@ public class SkillButton : MonoBehaviour
         Destroy(iceAttackEffect, 3.0f);
     }
 
+    /// <summary>
+    /// 隕石のエフェクトを生成
+    /// </summary>
     private void MeteorEffect()
     {
         GameObject meteorStartEffect = Instantiate(EffectDataBase.instance.meteorStartEffect, gameManager.stage.transform.position, Quaternion.identity);
         Destroy(meteorStartEffect, 1.0f);
     }
 
+    /// <summary>
+    /// 雷のエフェクトを生成
+    /// </summary>
     private void LightningEffect()
     {
         GameObject lightningStartEffect = Instantiate(EffectDataBase.instance.lightningStartEffect, gameManager.stage.transform.position, Quaternion.identity);

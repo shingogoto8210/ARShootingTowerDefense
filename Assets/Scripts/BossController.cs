@@ -9,9 +9,13 @@ public class BossController : EnemyControllerBase
     [SerializeField]
     private Image imgBossHP;
 
+    /// <summary>
+    /// bossのポジションを設定して，DefenseBaseの方を向く
+    /// </summary>
     protected override void Start()
     {
         base.Start();
+        //生成される場所が普通のEnemyと同じｙ座標なので，そこから上に移動させる
         this.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
         GameObject effect = Instantiate(EffectDataBase.instance.enemySummonEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1.0f);
@@ -19,6 +23,9 @@ public class BossController : EnemyControllerBase
         UpdateDisplayBossHPGage();
     }
 
+    /// <summary>
+    /// bossのHPゲージの更新
+    /// </summary>
     private void UpdateDisplayBossHPGage()
     {
         imgBossHP.fillAmount = this.enemyHP / this.maxEnemyHP;

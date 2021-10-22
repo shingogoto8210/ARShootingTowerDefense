@@ -388,8 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 8355060744003523180, guid: d953382fd37d7444dad8cbe50543869b,
-    type: 3}
+  m_PlanePrefab: {fileID: 0}
   m_DetectionMode: 1
 --- !u!114 &386857792
 MonoBehaviour:
@@ -738,7 +737,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518729198}
-  m_LocalRotation: {x: 0.13912073, y: -0, z: -0, w: 0.99027544}
+  m_LocalRotation: {x: 0.13911091, y: -0.011769496, z: -0.00165346, w: 0.9902055}
   m_LocalPosition: {x: 0.144, y: -0.272, z: 0.36100006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -748,7 +747,7 @@ Transform:
   - {fileID: 1082298125}
   m_Father: {fileID: 1535784188}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15.994, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15.989, y: -1.417, z: -0.39}
 --- !u!1 &534334594
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +790,7 @@ MonoBehaviour:
   isStop: 0
   skillPoint: 0
   audioSource: {fileID: 0}
+  isSkill: 0
 --- !u!4 &534334596
 Transform:
   m_ObjectHideFlags: 0

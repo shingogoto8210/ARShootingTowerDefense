@@ -16,21 +16,27 @@ public class ARManager : MonoBehaviour
     [SerializeField]
     private GameObject mainCamera;
 
+    /// <summary>
+    /// ARState‚Ì‰Šúİ’è
+    /// </summary>
     void Start()
     {
         spawnField = GetComponent<SpawnField>();
         arWeaponObj.SetActive(false);
-        if(gameManager.currentGameState == ARState.Debug)
+        if (gameManager.currentGameState == ARState.Debug)
         {
             this.gameObject.SetActive(false);
             mainCamera.gameObject.SetActive(true);
         }
         else
         {
-        gameManager.currentGameState = ARState.Tracking;
+            gameManager.currentGameState = ARState.Tracking;
         }
-}
+    }
 
+    /// <summary>
+    /// Œ»İ‚ÌARState‚ğŠm”F‚µ‚ÄCŸ‚ÌARState‚ÉØ‚è‘Ö‚¦‚é
+    /// </summary>
     void Update()
     {
         if(gameManager.currentGameState == ARState.Debug)
@@ -58,6 +64,10 @@ public class ARManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ARState‚ğReady‚©‚çPlay‚ÉØ‚è‘Ö‚¦‚é
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator PreparateGameReady()
     {
         yield return new WaitForSeconds(6.0f);

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// bossがEnemyを生成する
+/// </summary>
 public class BossEnemyGenerator : MonoBehaviour
 {
     [SerializeField]
@@ -24,6 +27,9 @@ public class BossEnemyGenerator : MonoBehaviour
         generateTimer = maxGenerateTimer;
     }
 
+    /// <summary>
+    /// 任意の時間が経過したら，ボスの周りに敵を生成する
+    /// </summary>
     void Update()
     {
         if (gameManager.currentGameState == ARState.Play && gameManager.isStop == false)
@@ -44,7 +50,9 @@ public class BossEnemyGenerator : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// フィールドに敵を3体生成する
+    /// </summary>
     private void Generate()
     {
         GameObject effect = Instantiate(EffectDataBase.instance.enemySummonEffect, transform.position, Quaternion.identity);
@@ -59,6 +67,9 @@ public class BossEnemyGenerator : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 次の敵が生成するまでのカウントダウンを更新する
+    /// </summary>
     private void UpdateDisplayShotLaserCount()
     {
         txtGenerateCount.text = generateTimer.ToString();

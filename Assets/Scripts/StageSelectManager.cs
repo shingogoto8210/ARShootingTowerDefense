@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+
+/// <summary>
+/// StageSelect‰æ–Ê‚ÌŠÇ—
+/// </summary>
 public class StageSelectManager : MonoBehaviour
 {
     [SerializeField]

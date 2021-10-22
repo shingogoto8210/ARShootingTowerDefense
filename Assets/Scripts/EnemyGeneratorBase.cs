@@ -11,7 +11,9 @@ public class EnemyGeneratorBase : MonoBehaviour
     [SerializeField]
     private EnemyControllerBase bossController;
     
-
+    /// <summary>
+    /// ƒ‰ƒ“ƒ_ƒ€‚ÈêŠ‚É“G‚ğ¶¬‚µ‚ÄC“G‚Ì‰Šúİ’è‚ğs‚¤
+    /// </summary>
     protected void GenerateEnemy()
     {
         float random_x = Random.Range(-2, 2);
@@ -21,12 +23,20 @@ public class EnemyGeneratorBase : MonoBehaviour
         enemy.SetUpEnemy(gameManager);
     }
 
+    /// <summary>
+    /// Generator‚Ì‰Šúİ’è‚ğ‚µ‚ÄC¶¬‚·‚é€”õ‚ğs‚¤
+    /// </summary>
+    /// <param name="gameManager"></param>
     public void SetUpGenerator(GameManager gameManager)
     {
         this.gameManager = gameManager;
         StartCoroutine(PrepareteGenerateEnemy());
     }
 
+    /// <summary>
+    /// ¶¬‚µ‚½”‚ªgameManager‚ÌenemyCount‚ğ’´‚¦‚é‚Ü‚Å“G‚ğ¶¬‚·‚é
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator PrepareteGenerateEnemy()
     {
         

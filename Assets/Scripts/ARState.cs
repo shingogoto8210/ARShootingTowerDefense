@@ -1,3 +1,6 @@
+/// <summary>
+/// ARStateの状態
+/// </summary>
 public enum ARState
 {
     Debug,         // Editor でのデバッグ用

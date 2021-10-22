@@ -11,6 +11,10 @@ public class Logo : MonoBehaviour
     [SerializeField]
     private Image img;
 
+    /// <summary>
+    /// ƒƒS‚ÌFade‘€ì
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator LogoEffect()
     {
         canvasGroup.alpha = 0.0f;

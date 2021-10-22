@@ -22,14 +22,19 @@ public class ShotBullet : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// 左クリックで弾を発射する
+    /// </summary>
     void Update()
     {
+        //連続して撃てないようにする
         shotInterval++;
         if(shotInterval > 10)
         {
             isShot = true;
             shotInterval = 0;
         }
+        //スキルボタンを押したときは弾を撃たない
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;

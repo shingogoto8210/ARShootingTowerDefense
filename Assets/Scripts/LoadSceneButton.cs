@@ -16,12 +16,18 @@ public class LoadSceneButton : MonoBehaviour
     [SerializeField]
     private CanvasGroup canvasGroup;
 
+    /// <summary>
+    /// メインシーンに遷移
+    /// </summary>
     public void OnClickLoadToMain()
     {
         SceneStateManager.instance.PreparateLoadSceneState(SceneState.Main,0.1f);
         GameData.instance.stageNo = stageNo;
     }
     
+    /// <summary>
+    /// TitleシーンからStageSelectシーンに遷移
+    /// </summary>
     public void OnClickLoadToStageSelectFromTitle()
     {
         if(imgShot != null)
@@ -34,6 +40,9 @@ public class LoadSceneButton : MonoBehaviour
         canvasGroup.DOFade(0.0f, 1.5f);
     }
 
+    /// <summary>
+    /// リザルトシーンからStageSelectシーンに遷移
+    /// </summary>
     public void OnClickLoadToStageSelectFromResult()
     {
         SceneStateManager.instance.PreparateLoadSceneState(SceneState.StageSelect, 1.5f);

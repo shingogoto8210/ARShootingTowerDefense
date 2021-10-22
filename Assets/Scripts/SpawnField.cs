@@ -19,6 +19,9 @@ public class SpawnField : MonoBehaviour
         isSpawnField = false;
     }
 
+    /// <summary>
+    /// タップした場所にステージを生成して，gameManagerの初期設定を行う
+    /// </summary>
     public void SpawnFieldObj()
     {
         if (Input.touchCount > 0)

@@ -6,6 +6,10 @@ public class BulletController : MonoBehaviour
 {
     private EnemyControllerBase enemy;
 
+    /// <summary>
+    /// Bullet‚ªEnemyControllerBase‚ğ‚Á‚Ä‚¢‚½‚ç“G‚ÉUŒ‚‚·‚é
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out enemy))

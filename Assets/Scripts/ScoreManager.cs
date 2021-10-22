@@ -26,12 +26,18 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// コンボ数を増やし，コンボタイマーをリセットする
+    /// </summary>
     public void CountCombo()
     {
         comboCount++;
         comboTimer = 0;
     }
 
+    /// <summary>
+    ///　5秒以内に次の攻撃を加えなければ，コンボ数がリセットされる
+    /// </summary>
     public void ResetComboTimer()
     {
         comboTimer += Time.deltaTime;

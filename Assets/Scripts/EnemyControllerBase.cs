@@ -18,22 +18,33 @@ public class EnemyControllerBase : MonoBehaviour
     protected int dropRate;
     public Tween tween;
     private AudioSource audioSource;
+    [SerializeField]
+    private int addSkillPoint = 1;
     
-
+    /// <summary>
+    /// Enemyの初期設定
+    /// </summary>
     protected virtual void Start()
     {
         enemyHP = maxEnemyHP;
         gameManager.enemiesList.Add(this);
+        this.gameObject.transform.LookAt(target.transform);
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(AudioDataBase.instance.enemySummonSound);
     }
 
+    /// <summary>
+    /// EnemyのHPを減らし，UIの更新をする
+    /// </summary>
     public virtual void AttackEnemy()
     {
         enemyHP--;
+        //コンボ数を増やして，更新する
         ScoreManager.instance.CountCombo();
         uiManager.UpdateDisplayCombo();
-        gameManager.skillPoint = Mathf.Clamp(gameManager.skillPoint + 1, 0, 10);
+        //Mathf.Clampの中では++が使えないので注意する
+        //gameManager.skillPoint = Mathf.Clamp(gameManager.skillPoint + 1, 0, 10);
+        gameManager.UpdateSkillPoint(addSkillPoint);
         uiManager.UpdateDisplaySkillGage();
         audioSource.PlayOneShot(AudioDataBase.instance.enemyAttackSound);
         if (enemyHP <= 0)
@@ -42,6 +53,9 @@ public class EnemyControllerBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Enemyを破壊してリストからも削除する
+    /// </summary>
     public virtual void DestroyEnemy()
     {
         //audioSource.PlayOneShot(AudioDataBase.instance.enemyDestroySound);
@@ -62,11 +76,18 @@ public class EnemyControllerBase : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// 敵を破壊せず，見えなくする
+    /// </summary>
+    /// <param name="isSwitch"></param>
     public void SwitchGameObject(bool isSwitch)
     {
         this.gameObject.SetActive(isSwitch);
     }
 
+    /// <summary>
+    /// 任意の確率でアイテムが落ちる
+    /// </summary>
     protected virtual void JudgeDropItem()
     {
         int number = 0;
@@ -80,6 +101,9 @@ public class EnemyControllerBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 敵の動きを止める
+    /// </summary>
     public void StopEnemy()
     {
         if(tween != null)
@@ -88,6 +112,9 @@ public class EnemyControllerBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 敵の動きを再開させる
+    /// </summary>
     public void ResumeEnemy()
     {
         if(tween != null)
@@ -96,6 +123,10 @@ public class EnemyControllerBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Enemyの初期設定
+    /// </summary>
+    /// <param name="gameManager"></param>
     public void SetUpEnemy(GameManager gameManager)
     {
         this.gameManager = gameManager;
@@ -103,6 +134,9 @@ public class EnemyControllerBase : MonoBehaviour
         this.target = gameManager.defenseBase.gameObject;
     }
 
+    /// <summary>
+    /// DefenseBaseに当たったとき敵を破壊する　アイテムは落ちない
+    /// </summary>
     public virtual void DefenseBaseDestroyEnemy()
     {
         //audioSource.PlayOneShot(AudioDataBase.instance.enemyDestroySound);
